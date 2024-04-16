@@ -1,1 +1,29 @@
-<h1>home</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Id</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Option</th>
+        </tr>
+    </thead>
+    <tbody>
+            {{#each data}}
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <th scope="row">{{this.id}}</th>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+                <button class="btn btn-primary">Xóa</button>
+                <button class="btn btn-danger">Sửa</button>
+            </td>
+        </tr>
+            {{/each}}
+    </tbody>
+</table>

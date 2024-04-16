@@ -1,6 +1,15 @@
+const userService = require("../useServer/userServer");
 class homeController {
-  demo(req, res, next) {
-    res.render("home");
+  async demo(req, res, next) {
+    try {
+      let result = await userService.userServiceAll();
+      console.log("result:", result);
+      return res.render("home", {
+        data: result,
+      });
+    } catch (error) {
+      console.log("error: demo", error);
+    }
   }
 }
 
