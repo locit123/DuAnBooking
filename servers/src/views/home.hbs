@@ -32,7 +32,7 @@
                     <td>{{this.roleId}}</td>
                     <td>{{this.phoneNumber}}</td>
                     <td>
-                        <form action="/delete/{{this.id}}?_method=DELETE" method="post">
+                        <form id="formDelete" action="/delete/{{this.id}}?_method=DELETE" method="post">
                             <button class="btn btn-primary">Xóa</button>
                         </form>
                         <a class="btn btn-danger" href="/edit?id={{this.id}}">Sửa</a>

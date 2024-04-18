@@ -1,0 +1,21 @@
+.content-box{
+    background-color: pink;
+    width: 400px;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 30px;
+    h1{
+        color: white;
+        font-weight: lighter;
+    }
+    .button{
+        outline: none;
+        border: 1px solid yellow;
+        background-color: yellow;
+        padding: 7px 0;
+        width: 100%;
+        border-radius: 20px;
+        color: white;
+        font-weight: bold;;
+    }
+}
