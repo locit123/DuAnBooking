@@ -6,6 +6,10 @@ const connectHandleBars = require("../config/connectHandlebars");
 const bodyParser = require("body-parser");
 const appRouter = require("../routers/index");
 const db = require("../config/connectDB");
+const methodOverride = require("method-override");
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
 
 //connect bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));

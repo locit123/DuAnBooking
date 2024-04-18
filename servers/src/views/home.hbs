@@ -1,29 +1,45 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Id</th>
-            <th scope="col">FirstName</th>
-            <th scope="col">LastName</th>
-            <th scope="col">Email</th>
-            <th scope="col">Ngày tạo</th>
-            <th scope="col">Option</th>
-        </tr>
-    </thead>
-    <tbody>
-            {{#each data}}
-        <tr>
-            <th scope="row">{{sum @index 1}}</th>
-            <th scope="row">{{this.id}}</th>
-            <td>{{this.firstName}}</td>
-            <td>{{this.lastName}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.createdAt}}</td>
-            <td>
-                <button class="btn btn-primary">Xóa</button>
-                <button class="btn btn-danger">Sửa</button>
-            </td>
-        </tr>
-            {{/each}}
-    </tbody>
-</table>
+<div class="container">
+    <div class="text-center">
+        <h1>GET USERS</h1>
+    </div>
+    <a href="create" class="btn btn-primary">Add</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">RoleId</th>
+                    <th scope="col">PhoneNumber</th>
+                    <th scope="col">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{sum @index 1}}</td>
+                    <td>{{this.id}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.firstName}}</td>
+                    <td>{{this.lastName}}</td>
+                    <td>{{this.address}}</td>
+                    <td>{{this.gender}}</td>
+                    <td>{{this.roleId}}</td>
+                    <td>{{this.phoneNumber}}</td>
+                    <td>
+                        <form action="/delete/{{this.id}}?_method=DELETE" method="post">
+                            <button class="btn btn-primary">Xóa</button>
+                        </form>
+                        <a class="btn btn-danger" href="/edit?id={{this.id}}">Sửa</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
