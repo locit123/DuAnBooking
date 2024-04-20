@@ -45,14 +45,13 @@ const loginUserService = (data) => {
         if (cEmail) {
           let cUser = await db.User.findOne({
             where: { email: email },
-            attributes: ["email", "password", "roleId"],
+            attributes: ["id", "email", "password", "roleId"],
             raw: true,
           });
           if (cUser) {
             let cPass = await bcrypt.compareSync(password, cUser.password);
             if (cPass) {
               delete cUser.password;
-              delete cUser.image;
               resolve({
                 EM: "Ok Success",
                 EC: 0,
@@ -60,21 +59,21 @@ const loginUserService = (data) => {
               });
             } else {
               resolve({
-                EM: "Sai password",
+                EM: "Email hoặc mật khẩu sai?",
                 EC: 1,
                 DT: dataUser,
               });
             }
           } else {
             resolve({
-              EM: "Không timf thấy User",
+              EM: "Email Ko Chính Xác",
               EC: 1,
               DT: dataUser,
             });
           }
         } else {
           resolve({
-            EM: "Không timf thấy User",
+            EM: "Email Ko Chính Xác",
             EC: 1,
             DT: dataUser,
           });

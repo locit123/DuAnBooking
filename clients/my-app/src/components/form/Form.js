@@ -31,5 +31,12 @@ const Select = (props) => {
     </div>
   );
 };
-
-export { Form, Select };
+const Error = (props) => {
+  const { messError, className } = props;
+  return (
+    <div>
+      <p className={className}>{messError}</p>
+    </div>
+  );
+};
+export { Form, Select, Error };

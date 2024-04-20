@@ -7,7 +7,10 @@ const bodyParser = require("body-parser");
 const appRouter = require("../routers/index");
 const db = require("../config/connectDB");
 const methodOverride = require("method-override");
+const cors = require("cors");
 
+//connect cors
+app.use(cors());
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 

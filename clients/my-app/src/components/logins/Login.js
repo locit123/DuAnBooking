@@ -1,13 +1,38 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { Form, Select } from "../form/Form";
-const Login = () => {
+import { Form, Select, Error } from "../form/Form";
+import { userLoginService } from "../../servers/auth/serviceUser";
+import { useNavigate } from "react-router-dom";
+const Login = ({ setData }) => {
   const [emailAndPhone, setEmailAndPhone] = useState("");
   const [password, setPassword] = useState("");
   const [checkEye, setCheckEye] = useState(false);
-
-  const handleClick = () => {
-    console.log(emailAndPhone, password);
+  const [textError, setTextError] = useState("");
+  let navigation = useNavigate();
+  const handleClick = async () => {
+    try {
+      if (!emailAndPhone && !password) {
+        setTextError("vui lòng nhập dữ liệu?");
+      } else {
+        let result = await userLoginService(emailAndPhone, password);
+        console.log(result);
+        if (result && result.data && result.data.EC === 0) {
+          console.log(result.data);
+          let isLoginSuccess = setData(result.data);
+          if (isLoginSuccess) {
+            setTextError("đã lưu giá trị");
+            navigation("/");
+          } else {
+            setTextError("lấy ko đc giá trị");
+          }
+          setTextError("");
+        } else {
+          setTextError(result.data.EM);
+        }
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
   const handleClickEye = () => {
     setCheckEye(!checkEye);
@@ -35,6 +60,7 @@ const Login = () => {
         type={checkEye ? "text" : "password"}
         onClick={() => handleClickEye()}
       />
+      <Error messError={textError} className="p" />
       <button className="button" onClick={() => handleClick()}>
         Đăng Nhập
       </button>
