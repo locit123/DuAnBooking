@@ -4,6 +4,7 @@ import Header from "../header/Header";
 import { getAllUsersService } from "../../servers/auth/serviceUser";
 const Home = ({ getData, setUser }) => {
   const [data, setData] = useState([]);
+  console.log("length Data", data.length);
   const handleClick = () => {
     setUser(null);
   };

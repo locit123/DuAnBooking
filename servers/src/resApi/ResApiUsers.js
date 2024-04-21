@@ -1,11 +1,7 @@
 const db = require("../models/index");
 var bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(10);
-//MÃ HÓa PASSWORD
-const hashPassword = (password) => {
-  var hash = bcrypt.hashSync(password, salt);
-  return hash;
-};
+
 //check email
 const checkEmail = async (email) => {
   let checkEmail = await db.User.findOne({
@@ -18,14 +14,22 @@ const checkEmail = async (email) => {
     return false;
   }
 };
+
 //check phone
 const checkPhoneExists = async (phoneNumber) => {
-  let checkPhone = db.User.phoneNumber({ where: { phoneNumber: phoneNumber } });
+  let checkPhone = await db.User.findOne({
+    where: { phoneNumber: phoneNumber },
+  });
   if (checkPhone) {
     return true;
   } else {
     return false;
   }
+};
+//MÃ HÓa PASSWORD
+const hashPassword = (password) => {
+  var hash = bcrypt.hashSync(password, salt);
+  return hash;
 };
 
 const loginUserService = (data) => {
@@ -34,13 +38,7 @@ const loginUserService = (data) => {
       let email = data.email;
       let password = data.password;
       let dataUser = {};
-      if (!email && !password) {
-        resolve({
-          EM: "Vui lòng nhập dữ liệu",
-          EC: 1,
-          DT: "",
-        });
-      } else {
+      if (email && password) {
         let cEmail = checkEmail(email);
         if (cEmail) {
           let cUser = await db.User.findOne({
@@ -78,6 +76,12 @@ const loginUserService = (data) => {
             DT: dataUser,
           });
         }
+      } else {
+        resolve({
+          EM: "Vui lòng nhập dữ liệu",
+          EC: 1,
+          DT: "",
+        });
       }
     } catch (error) {
       console.log("error loginUserService", error);
@@ -144,4 +148,149 @@ const getAllUsersService = (id) => {
     }
   });
 };
-module.exports = { loginUserService, getAllUsersService };
+
+const createNewUserService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let createUser = {};
+      if (
+        data.email &&
+        data.password &&
+        data.firstName &&
+        data.lastName &&
+        data.address &&
+        data.gender &&
+        data.roleId &&
+        data.phoneNumber
+      ) {
+        //mã hóa pass
+        let hPass = hashPassword(data.password);
+        //cEmail
+        let cEmail = await checkEmail(data.email);
+        if (cEmail) {
+          resolve({
+            EM: "email đã tồn tại",
+            EC: 2,
+            DT: createUser,
+          });
+          return false;
+        }
+        //check phone
+        let cPhone = await checkPhoneExists(data.phoneNumber);
+        if (cPhone) {
+          resolve({
+            EM: "phone đã tồn tại",
+            EC: 2,
+            DT: createUser,
+          });
+          return false;
+        }
+        let dataUser = await db.User.create(
+          {
+            email: data.email,
+            password: hPass,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            address: data.address,
+            gender: data.gender,
+            roleId: data.roleId,
+            phoneNumber: data.phoneNumber,
+          },
+          { raw: true }
+        );
+        let res = dataUser.get({ plain: true });
+        if (res) {
+          delete res.password;
+          resolve({
+            EM: "success createNewUser",
+            EC: 0,
+            DT: res,
+          });
+        }
+      } else {
+        resolve({
+          EM: "vui lòng nhập dữ liệu",
+          EC: 1,
+          DT: createUser,
+        });
+      }
+    } catch (error) {
+      console.log("error createNewUserService", error);
+      reject({
+        EM: "error createNewUserService",
+        EC: -1,
+        DT: error,
+      });
+    }
+  });
+};
+
+const deleteUserService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let idUser = await db.User.findOne({ where: { id: id } });
+      if (!idUser) {
+        resolve({
+          EM: "id undefined",
+          EC: 1,
+          DT: "",
+        });
+      } else {
+        let result = await db.User.destroy({ where: { id: id } });
+        resolve({
+          EM: "delete user success",
+          EC: 0,
+          DT: result,
+        });
+      }
+    } catch (error) {
+      console.log("error deleteUserService", error);
+      reject({
+        EM: "error createNewUserService",
+        EC: -1,
+        DT: error,
+      });
+    }
+  });
+};
+const putUserService = async (data) => {
+  try {
+    let id = await db.User.findOne({ where: { id: data.id } });
+    if (!id) {
+      console.log(id);
+      return {
+        EM: "id undefined",
+        EC: 1,
+        DT: "",
+      };
+    } else {
+      let result = await db.User.update(
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+        },
+        { where: { id: data.id } }
+      );
+      return {
+        EM: "success update user",
+        EC: 0,
+        DT: result,
+      };
+    }
+  } catch (error) {
+    console.log("error putUserService", error);
+    return {
+      EM: "error putUserService failed",
+      EC: -1,
+      DT: "",
+    };
+  }
+};
+module.exports = {
+  loginUserService,
+  getAllUsersService,
+  createNewUserService,
+  deleteUserService,
+  putUserService,
+};
