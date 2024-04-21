@@ -90,4 +90,58 @@ const loginUserService = (data) => {
   });
 };
 
-module.exports = { loginUserService };
+const getAllUsersService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let users = "";
+      if (id === "all") {
+        users = await db.User.findAll({
+          attributes: {
+            exclude: ["password"],
+          },
+        });
+        if (users) {
+          resolve({
+            EM: "success get all users",
+            EC: 0,
+            DT: users,
+          });
+        }
+      }
+      if (id && id !== "all") {
+        users = await db.User.findOne({
+          where: { id: id },
+          attributes: {
+            exclude: ["password"],
+          },
+        });
+        if (users) {
+          resolve({
+            EM: "success get one user",
+            EC: 0,
+            DT: users,
+          });
+        } else {
+          resolve({
+            EM: "error get one user",
+            EC: 1,
+            DT: users,
+          });
+        }
+      }
+      resolve({
+        EM: "error get users",
+        EC: 2,
+        DT: users,
+      });
+    } catch (error) {
+      console.log("Error getAllUsersService", error);
+      reject({
+        EM: "error get all users",
+        EC: -1,
+        DT: "",
+      });
+    }
+  });
+};
+module.exports = { loginUserService, getAllUsersService };

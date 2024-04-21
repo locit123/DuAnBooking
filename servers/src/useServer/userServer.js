@@ -83,7 +83,7 @@ const userServiceAll = async (req, res, next) => {
     let users = [];
     let data = await db.User.findAll();
     if (data && data.length > 0) {
-      users = data.map((user) => user.dataValues);
+      users = data;
     }
     return users;
   } catch (error) {

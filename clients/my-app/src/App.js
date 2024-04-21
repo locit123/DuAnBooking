@@ -18,7 +18,6 @@ function App() {
 
   const [user, setUser] = useState(getDataUserInfo);
   const setSaveDataUser = (userInfo) => {
-    console.log("userInfo::::::::::::::::::::::>", userInfo);
     if (!userInfo) {
       localStorage.removeItem("user");
       setUser(null);
