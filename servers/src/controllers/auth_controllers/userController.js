@@ -28,9 +28,9 @@ class userController {
   }
   async getAllUsers(req, res, next) {
     try {
-      let id = req.body.id;
+      let id = req.params.id;
+      console.log(id);
       let result = await resApiUser.getAllUsersService(id);
-      console.log(result);
       if (result) {
         return res.status(200).json({
           EM: result.EM,

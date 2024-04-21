@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    .box-ul {
+            background-color: pink;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            justify-content: space-between;
+            ul li {
+                list-style: none;
+                line-height: 50px;
+            }
+            .box-1{
+                display: flex;
+                margin: 0;
+                padding: 0;
+                color: white;
+                align-items: center;
+            }
+            .box-1 li:first-child{
+                margin-right: 10px;
+            }
+            .box-2{
+                margin: 0;
+                color: white;
+                cursor: pointer;
+            }
+        }
+}
