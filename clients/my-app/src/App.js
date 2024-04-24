@@ -1,6 +1,7 @@
 import "./App.css";
 import Login from "./components/logins/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./components/home/Home";
 import { Routes, Route } from "react-router-dom";
 import UserManages from "./components/users/UserManages";
 import { PublicRoute, PrivateRoute } from "./components/authRouter/authRouter";
@@ -33,9 +34,10 @@ function App() {
       </Route>
       <Route element={<PrivateRoute user={user} />}>
         <Route
-          path="/"
+          path="/user"
           element={<UserManages getData={user} setUser={setSaveDataUser} />}
         />
+        <Route path="/home" element={<Home />} />
       </Route>
     </Routes>
   );
