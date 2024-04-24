@@ -2,7 +2,7 @@ import "./App.css";
 import Login from "./components/logins/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
-import UserManages from "./components/home/UserManages";
+import UserManages from "./components/users/UserManages";
 import { PublicRoute, PrivateRoute } from "./components/authRouter/authRouter";
 import { useState } from "react";
 function App() {
