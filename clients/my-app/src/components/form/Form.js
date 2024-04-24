@@ -1,15 +1,24 @@
 import React from "react";
 import "./Form.scss";
 const Form = (props) => {
-  const { label, placeholder, name, onChange, value, eye, type, onClick } =
-    props;
+  const {
+    label,
+    className,
+    placeholder,
+    name,
+    onChange,
+    value,
+    eye,
+    type,
+    onClick,
+  } = props;
   return (
     <div className="form-group mt-3 mb-3">
-      <label className="mb-2">{label}</label>
+      <label className="mb-2 colorLabel">{label}</label>
       <input
         onChange={onChange}
         placeholder={placeholder}
-        className="form-control"
+        className={className}
         name={name}
         value={value}
         type={type}
@@ -19,11 +28,16 @@ const Form = (props) => {
   );
 };
 const Select = (props) => {
-  const { label, name, v1, v2, v3, gt1, gt2, gt3 } = props;
+  const { label, name, v1, v2, v3, gt1, gt2, gt3, onChange, value } = props;
   return (
     <div className="form-group mt-3 mb-3">
-      <label className="mb-2">{label}</label>
-      <select name={name} className="col-12 form-control">
+      <label className="mb-2 colorLabel">{label}</label>
+      <select
+        name={name}
+        className="col-12 form-control"
+        onChange={onChange}
+        value={value}
+      >
         <option value={v1}>{gt1}</option>
         <option value={v2}>{gt2}</option>
         <option value={v3}>{gt3}</option>

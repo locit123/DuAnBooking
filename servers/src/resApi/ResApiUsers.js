@@ -253,13 +253,12 @@ const deleteUserService = (id) => {
     }
   });
 };
-const putUserService = async (data) => {
+const putUserService = async (idUser, data) => {
   try {
-    let id = await db.User.findOne({ where: { id: data.id } });
-    if (!id) {
-      console.log(id);
+    let id = await db.User.findOne({ where: { id: idUser } });
+    if (!(id && data.firstName && data.lastName && data.address)) {
       return {
-        EM: "id undefined",
+        EM: "Vui lòng không để trống dữ liệu",
         EC: 1,
         DT: "",
       };
@@ -270,7 +269,7 @@ const putUserService = async (data) => {
           lastName: data.lastName,
           address: data.address,
         },
-        { where: { id: data.id } }
+        { where: { id: idUser } }
       );
       return {
         EM: "success update user",

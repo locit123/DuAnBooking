@@ -60,7 +60,8 @@ class userController {
   }
   async deleteUser(req, res, next) {
     try {
-      let id = req.body.id;
+      let id = req.params.id;
+      console.log(id);
       let result = await resApiUser.deleteUserService(id);
       if (result) {
         return res.status(200).json({
@@ -80,7 +81,10 @@ class userController {
   }
   async putUser(req, res, next) {
     try {
-      let result = await resApiUser.putUserService(req.body);
+      let id = req.params.id;
+      let body = req.body;
+      let result = await resApiUser.putUserService(id, body);
+
       if (result) {
         return res.status(200).json({
           EM: result.EM,

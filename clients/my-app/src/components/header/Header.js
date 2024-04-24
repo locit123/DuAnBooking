@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.scss";
 const Header = (props) => {
-  const { li1, li2, li3, onClick } = props;
+  const { li1, li2, li3, onClick, li4 } = props;
   return (
     <div className="box-ul">
       <ul className="box-1">
@@ -9,6 +9,7 @@ const Header = (props) => {
         <li>{li2}</li>
       </ul>
       <ul className="box-2">
+        <li>{li4}</li>
         <li onClick={onClick}>{li3}</li>
       </ul>
     </div>

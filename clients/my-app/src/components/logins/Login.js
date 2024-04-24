@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { Form, Select, Error } from "../form/Form";
+import { Form, Error } from "../form/Form";
 import { userLoginService } from "../../servers/auth/serviceUser";
 import { useNavigate } from "react-router-dom";
-const Login = ({ setData }) => {
+const Login = (props) => {
+  const { setData } = props;
   const [emailAndPhone, setEmailAndPhone] = useState("");
   const [password, setPassword] = useState("");
   const [checkEye, setCheckEye] = useState(false);
@@ -47,6 +48,7 @@ const Login = ({ setData }) => {
         label={"Email And PhoneNumber:"}
         placeholder={"Vui Lòng nhập email or phone"}
         name={"email"}
+        className={"form-control"}
         value={emailAndPhone}
         type={"email"}
       />
@@ -56,6 +58,7 @@ const Login = ({ setData }) => {
         placeholder={"Vui Lòng nhập password"}
         name={"password"}
         value={password}
+        className={"form-control"}
         eye={checkEye ? "Mở Mắt" : "Nhắm Mắt"}
         type={checkEye ? "text" : "password"}
         onClick={() => handleClickEye()}
