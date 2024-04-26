@@ -37,7 +37,22 @@
             .box-3 {
                 display: flex;
                 list-style: none;
-                color: white;
+                gap: 15px;
+                .vn{
+                    color: red;
+                }
+                .vn2{
+                    color: white;
+                }
+                li{
+                    a{
+                        text-decoration: none;
+                        color: white;
+                    }
+                    div{
+                        color: white;
+                    }
+                }
             }
         }
     }
