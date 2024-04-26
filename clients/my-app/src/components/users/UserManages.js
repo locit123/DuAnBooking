@@ -10,6 +10,9 @@ import {
 import { Button } from "reactstrap";
 import ModalAll from "../modal/ModalAll";
 import { Error, Form, Select } from "../form/Form";
+import ModalEdit from "./modalEdit/ModalEdit";
+import ModalAdd from "./modalEdit/ModalAdd";
+import ModalDelete from "./modalEdit/ModalDelete";
 
 const UserManages = ({ getData, setUser }) => {
   const [data, setData] = useState([]);
@@ -155,244 +158,59 @@ const UserManages = ({ getData, setUser }) => {
       console.log("error handleClickUpdate", error);
     }
   };
-  //<<<<<<<<<<<<<MODEL ADD 1>>>>>>>>>>>>>>>>>>>>
-  const BodyElement1 = [
-    {
-      label: "FirstName:",
-      placeholder: "Nhập firstName:",
-      onChange: (e) => setFirstName(e.target.value),
-      className: "form-control",
-      type: "text",
-      name: "firstName",
-      value: firstName,
-    },
-    {
-      label: "LastName:",
-      placeholder: "Nhập lastName:",
-      onChange: (e) => setLastName(e.target.value),
-      className: "form-control",
-      type: "text",
-      value: lastName,
-    },
-    {
-      label: "Address:",
-      placeholder: "Nhập address:",
-      onChange: (e) => setAddress(e.target.value),
-      className: "form-control",
-      type: "text",
-      value: address,
-    },
-    { messError: errMess, className: "err" },
-  ];
-  //duyệt qua mảng
-  const Body1 = BodyElement1.map((item, index) => {
-    if (item.label) {
-      return (
-        <Form
-          key={index}
-          label={item.label}
-          placeholder={item.placeholder}
-          onChange={item.onChange}
-          className={item.className}
-          type={item.type}
-          value={item.value}
-        />
-      );
-    } else {
-      return (
-        <Error
-          key={index}
-          messError={item.messError}
-          className={item.className}
-        />
-      );
-    }
-  });
   //<<<<<<<<<<<<<MODEL ADD 2>>>>>>>>>>>>>>>>>>>>
-  const bodyElement2 = [
-    {
-      name: 1,
-      onChange: (e) => setEmail(e.target.value),
-      label: "Email:",
-      placeholder: "Nhập email",
-      className: "form-control",
-      value: email,
-      type: "email",
-    },
-    {
-      name: 2,
-      onChange: (e) => setPassword(e.target.value),
-      label: "Password:",
-      placeholder: "Nhập password",
-      className: "form-control",
-      value: password,
-      type: "password",
-    },
-    {
-      name: 3,
-      onChange: (e) => setFirstName(e.target.value),
-      label: "FirstName:",
-      placeholder: "Nhập firstName",
-      className: "form-control",
-      value: firstName,
-      type: "text",
-    },
-    {
-      name: 4,
-      onChange: (e) => setLastName(e.target.value),
-      label: "LastName:",
-      placeholder: "Nhập lastName",
-      className: "form-control",
-      value: lastName,
-      type: "text",
-    },
-    {
-      name: 5,
-      onChange: (e) => setAddress(e.target.value),
-      label: "Address:",
-      placeholder: "Nhập address",
-      className: "form-control",
-      value: address,
-      type: "text",
-    },
-    {
-      name: 6,
-      onChange: (e) => setPhoneNumber(e.target.value),
-      label: "PhoneNumber:",
-      placeholder: "Nhập phoneNumber",
-      className: "form-control",
-      value: phoneNumber,
-      type: "number",
-    },
-    {
-      name: 7,
-      label: "Gender:",
-      v1: "1",
-      v2: "2",
-      v3: "3",
-      gt1: "Female",
-      gt2: "Male",
-      gt3: "Other",
-      onChange: (e) => setGender(e.target.value),
-      value: gender,
-    },
-    {
-      name: 8,
-      label: "RoleId:",
-      v1: "1",
-      v2: "2",
-      v3: "3",
-      gt1: "Admin",
-      gt2: "Doctor",
-      gt3: "Patient",
-      onChange: (e) => setRoleId(e.target.value),
-      value: roleId,
-    },
-    { messError: errMess, className: "err" },
-  ];
-  const body2 = bodyElement2.map((item, index) => {
-    if (item.name > 0 && item.name <= 6) {
-      return (
-        <Form
-          key={index}
-          label={item.label}
-          placeholder={item.placeholder}
-          className={item.className}
-          value={item.value}
-          type={item.type}
-          onChange={item.onChange}
-        />
-      );
-    }
-    if (item.name > 6 && item.name <= 8) {
-      return (
-        <div className="row" key={index}>
-          <div className="col-6">
-            <Select
-              label={item.label}
-              v1={item.v1}
-              v2={item.v2}
-              v3={item.v3}
-              gt1={item.gt1}
-              gt2={item.gt2}
-              gt3={item.gt3}
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <Error
-          key={index}
-          messError={item.messError}
-          className={item.className}
-        />
-      );
-    }
-  });
+
   //<<<<<<<<<<-------------------------->>>>>>>>>>
   return (
     <div className="box-all">
       {/* EditUser */}
-      <ModalAll
+      <ModalEdit
+        onChange1={(e) => setFirstName(e.target.value)}
+        value1={firstName}
+        onChange2={(e) => setLastName(e.target.value)}
+        value2={lastName}
+        onChange3={(e) => setAddress(e.target.value)}
+        value3={address}
+        messError={errMess}
+        className={"err"}
         isOpen={modal3}
         toggle={() => toggle3()}
-        titleHeader={<div>Edit User</div>}
-        body={Body1}
-        footer={[
-          <Button
-            key={"update"}
-            onClick={() => handleClickUpdate()}
-            color="primary"
-          >
-            Update
-          </Button>,
-          <Button key={"cancel"} onClick={() => toggle3()} color="primary">
-            Cancel
-          </Button>,
-        ]}
+        onClick1={() => handleClickUpdate()}
+        onClick2={() => toggle3()}
       />
       {/* DeleteUser */}
-      <ModalAll
+      <ModalDelete
         toggle={() => toggle2()}
         isOpen={modal2}
-        titleHeader={
-          <div>
-            Bạn đang muốn xóa user {fi} {la}?
-          </div>
-        }
-        body={
-          <div>
-            Bạn đã chắc chắn là muốn xóa user {fi} {la}?
-          </div>
-        }
-        footer={[
-          <Button
-            key={"xacNhan"}
-            onClick={() => handleClickXacNhanXoa()}
-            color="primary"
-          >
-            Xác Nhận
-          </Button>,
-          <Button key={"huy"} onClick={() => toggle2()} color="primary">
-            Hủy
-          </Button>,
-        ]}
+        fi={fi}
+        la={la}
+        onClick1={() => handleClickXacNhanXoa()}
+        onClick2={() => toggle2}
       />
       {/* CreateNewUser */}
-      <ModalAll
-        toggle={() => toggle()}
+      <ModalAdd
+        onChange1={(e) => setEmail(e.target.value)}
+        value1={email}
+        onChange2={(e) => setPassword(e.target.value)}
+        value2={password}
+        onChange3={(e) => setFirstName(e.target.value)}
+        value3={firstName}
+        onChange4={(e) => setLastName(e.target.value)}
+        value4={lastName}
+        onChange5={(e) => setAddress(e.target.value)}
+        value5={address}
+        onChange6={(e) => setPhoneNumber(e.target.value)}
+        value6={phoneNumber}
+        onChange7={(e) => setGender(e.target.value)}
+        value7={gender}
+        onChange8={(e) => setRoleId(e.target.value)}
+        value8={roleId}
+        messError={errMess}
+        className={"err"}
         isOpen={modal}
-        titleHeader={<div>Create New User</div>}
-        body={body2}
-        footer={[
-          <Button key={"them"} onClick={() => handleSubmit()} color="primary">
-            Thêm
-          </Button>,
-          <Button key={"cancel"} onClick={() => toggle()} color="primary">
-            Cancel
-          </Button>,
-        ]}
+        toggle={() => toggle()}
+        onClick1={() => handleSubmit()}
+        onClick2={() => toggle()}
       />
       <div className="header">
         <Header

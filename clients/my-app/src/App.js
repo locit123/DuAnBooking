@@ -37,7 +37,7 @@ function App() {
           path="/user"
           element={<UserManages getData={user} setUser={setSaveDataUser} />}
         />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Route>
     </Routes>
   );
