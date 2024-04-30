@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-const PublicRoute = ({ user }) => {
-  if (user) {
+import { useProvider } from "../useProvider/UseProvider";
+const PublicRoute = () => {
+  const providerItems = useContext(useProvider);
+  if (providerItems.user) {
     return <Navigate to={"/"} />;
   }
   return <Outlet />;
 };
-const PrivateRoute = ({ user }) => {
-  if (!user) {
+const PrivateRoute = () => {
+  const providerItems = useContext(useProvider);
+  if (!providerItems.user) {
     return <Navigate to={"/login"} />;
   }
   return <Outlet />;

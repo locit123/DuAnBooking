@@ -1,12 +1,20 @@
 import React from "react";
 import "./Home.scss";
-import Header from "./header/Header";
+import PopularizeExpertise from "./body/PopularizeExpertise";
+import Footer from "./footer/HomeFooter";
+import HeaderHome from "./header/HeaderHome";
 
 const Home = () => {
   return (
     <div className="box-container">
       <div className="box-header">
-        <Header />
+        <HeaderHome />
+      </div>
+      <div className="box-body">
+        <PopularizeExpertise />
+      </div>
+      <div className="box-footer text-center">
+        <Footer />
       </div>
     </div>
   );

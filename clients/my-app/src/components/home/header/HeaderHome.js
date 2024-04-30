@@ -3,11 +3,10 @@ import "./Header.scss";
 import a1 from "../../images/a1.png";
 import { useTranslation } from "react-i18next";
 
-const Header = () => {
+const HeaderHome = () => {
   const { t, i18n } = useTranslation();
 
   const [check, setCheck] = useState("");
-  const [checkColor, setCheckColor] = useState(false);
 
   const getItemLanguage = () => {
     const itemLanguage = localStorage.getItem("language");
@@ -202,4 +201,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderHome;

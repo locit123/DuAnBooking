@@ -5,39 +5,18 @@ import Home from "./components/home/Home";
 import { Routes, Route } from "react-router-dom";
 import UserManages from "./components/users/UserManages";
 import { PublicRoute, PrivateRoute } from "./components/authRouter/authRouter";
-import { useState } from "react";
+import UserRedux from "./components/users/UserRedux";
+
 function App() {
-  const getDataUserInfo = () => {
-    let userData = localStorage.getItem("user");
-    if (userData) {
-      return JSON.parse(userData);
-    }
-
-    return null;
-  };
-
-  const [user, setUser] = useState(getDataUserInfo);
-  const setSaveDataUser = (userInfo) => {
-    if (!userInfo) {
-      localStorage.removeItem("user");
-      setUser(null);
-    } else {
-      localStorage.setItem("user", JSON.stringify(userInfo));
-      setUser(userInfo);
-    }
-  };
-
   return (
     <Routes>
-      <Route element={<PublicRoute user={user} />}>
-        <Route path="/login" element={<Login setData={setSaveDataUser} />} />
+      <Route element={<PublicRoute />}>
+        <Route path="/login" element={<Login />} />
       </Route>
-      <Route element={<PrivateRoute user={user} />}>
-        <Route
-          path="/user"
-          element={<UserManages getData={user} setUser={setSaveDataUser} />}
-        />
-        <Route path="/" element={<Home setSaveDataUser={setSaveDataUser} />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/user" element={<UserManages />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/user-redux" element={<UserRedux />} />
       </Route>
     </Routes>
   );

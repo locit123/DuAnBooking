@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.scss";
-
 import { userLoginService } from "../../servers/auth/serviceUser";
 import { useNavigate } from "react-router-dom";
 import ModelLogin from "./ModelLogin";
-const Login = (props) => {
-  const { setData } = props;
+import { useProvider } from "../useProvider/UseProvider";
+const Login = () => {
+  const providerItems = useContext(useProvider);
   const [emailAndPhone, setEmailAndPhone] = useState("");
   const [password, setPassword] = useState("");
   const [checkEye, setCheckEye] = useState(false);
@@ -13,14 +13,14 @@ const Login = (props) => {
   let navigation = useNavigate();
   const handleClick = async () => {
     try {
-      if (!emailAndPhone && !password) {
+      if (!(emailAndPhone && password)) {
         setTextError("vui lòng nhập dữ liệu?");
       } else {
         let result = await userLoginService(emailAndPhone, password);
         console.log(result);
         if (result && result.data && result.data.EC === 0) {
           console.log(result.data);
-          let isLoginSuccess = setData(result.data);
+          let isLoginSuccess = providerItems.setSaveDataUser(result.data);
           if (isLoginSuccess) {
             setTextError("đã lưu giá trị");
             navigation("/");

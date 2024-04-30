@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./UserManage.scss";
-import Header from "../header/Header";
 import {
   createNewUser,
   getAllUsersService,
   deleteUserService,
   putUserService,
 } from "../../servers/auth/serviceUser";
-import { Button } from "reactstrap";
-import ModalAll from "../modal/ModalAll";
-import { Error, Form, Select } from "../form/Form";
 import ModalEdit from "./modalEdit/ModalEdit";
 import ModalAdd from "./modalEdit/ModalAdd";
 import ModalDelete from "./modalEdit/ModalDelete";
+import { HeaderComponents } from "../header/HeaderComponents";
 
-const UserManages = ({ getData, setUser }) => {
+const UserManages = () => {
   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
@@ -32,16 +29,6 @@ const UserManages = ({ getData, setUser }) => {
   const [id, setId] = useState("");
   const [modal3, setModal3] = useState(false);
   const [idUpdate, setIdUpdate] = useState("");
-  const [emailName, setEmailName] = useState([]);
-  //------------GET USERS-------------
-  const getUsers = async () => {
-    let emailN = await getData.DT.email;
-    setEmailName(emailN);
-  };
-  //------------LOGOUT USER-----------
-  const handleClick = () => {
-    setUser(null);
-  };
   //-------------GET ALL USER---------
   const getAllUsers = async () => {
     try {
@@ -55,7 +42,6 @@ const UserManages = ({ getData, setUser }) => {
   };
   useEffect(() => {
     getAllUsers();
-    getUsers();
   }, []);
 
   //---------------ADD USER------------
@@ -158,9 +144,7 @@ const UserManages = ({ getData, setUser }) => {
       console.log("error handleClickUpdate", error);
     }
   };
-  //<<<<<<<<<<<<<MODEL ADD 2>>>>>>>>>>>>>>>>>>>>
 
-  //<<<<<<<<<<-------------------------->>>>>>>>>>
   return (
     <div className="box-all">
       {/* EditUser */}
@@ -213,13 +197,7 @@ const UserManages = ({ getData, setUser }) => {
         onClick2={() => toggle()}
       />
       <div className="header">
-        <Header
-          li1={"Hệ Thống"}
-          li2={"|"}
-          li3={"Logout"}
-          li4={`Xin Chào:${emailName}`}
-          onClick={() => handleClick()}
-        />
+        <HeaderComponents />
       </div>
       <div className="box-body">
         <div className="mt-3 mb-3 text-center">
