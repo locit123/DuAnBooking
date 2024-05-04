@@ -10,6 +10,12 @@ const Header = (props) => {
     li4,
     li5,
     li6,
+    li7,
+    li8,
+    li9,
+    li10,
+    li11,
+    li12,
     onClick2,
     onClick3,
     className1,
@@ -18,9 +24,17 @@ const Header = (props) => {
   return (
     <div className="box-ul">
       <ul className="box-1">
-        <li>{li1}</li>
+        <li className="li1">
+          {li1}
+          <Menu classNameMenu1={"menu-1"} />
+        </li>
         <li>{li2}</li>
-        <Menu classNameMenu1={"menu-1"} classNameMenu2={"menu-2"} />
+        <li>{li7}</li>
+        <li>{li8}</li>
+        <li>{li9}</li>
+        <li>{li10}</li>
+        <li>{li11}</li>
+        <li>{li12}</li>
       </ul>
       <ul className="box-2">
         <li className={className1} onClick={onClick3}>

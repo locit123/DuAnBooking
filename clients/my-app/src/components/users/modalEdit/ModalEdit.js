@@ -60,11 +60,13 @@ const ModalEdit = (props) => {
         />
       );
     } else {
-      <Error
-        key={index}
-        messError={item.messError}
-        className={item.className}
-      />;
+      return (
+        <Error
+          key={index}
+          messError={item.messError}
+          className={item.className}
+        />
+      );
     }
   });
   return (

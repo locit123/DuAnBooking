@@ -6,12 +6,9 @@ import { useTranslation } from "react-i18next";
 const HeaderHome = () => {
   const { t, i18n } = useTranslation();
 
-  const [check, setCheck] = useState("");
-
   const getItemLanguage = () => {
     const itemLanguage = localStorage.getItem("language");
     if (itemLanguage) {
-      setCheck(i18n.language);
       return i18n.changeLanguage(itemLanguage);
     }
     return null;
@@ -63,7 +60,7 @@ const HeaderHome = () => {
             <li>
               <div>
                 <span
-                  className={check === "vn" ? "vn" : "vn2"}
+                  className={i18n.language === "vn" ? "vn" : "vn2"}
                   onClick={() => handleClickLanguage("vn")}
                 >
                   VN
@@ -73,7 +70,7 @@ const HeaderHome = () => {
             <li>
               <div>
                 <span
-                  className={check === "en" ? "vn" : "vn2"}
+                  className={i18n.language === "en" ? "vn" : "vn2"}
                   onClick={() => handleClickLanguage("en")}
                 >
                   ENG
@@ -104,7 +101,7 @@ const HeaderHome = () => {
               <ul className="box-text_ul">
                 <li className="text-center">
                   <a href="#">
-                    {check === "en" ? (
+                    {i18n.language === "en" ? (
                       <div>
                         {t("banner.child1")} <br />
                         {t("banner.child0")}{" "}
@@ -119,7 +116,7 @@ const HeaderHome = () => {
                 </li>
                 <li className="text-center">
                   <a href="#">
-                    {check === "en" ? (
+                    {i18n.language === "en" ? (
                       <div>
                         {t("banner.child2")} <br />
                         {t("banner.child0")}{" "}
@@ -134,7 +131,7 @@ const HeaderHome = () => {
                 </li>
                 <li className="text-center">
                   <a href="#">
-                    {check === "en" ? (
+                    {i18n.language === "en" ? (
                       <div>
                         {t("banner.child3")} <br />
                         {t("banner.child0")}{" "}
@@ -149,7 +146,7 @@ const HeaderHome = () => {
                 </li>
                 <li className="text-center">
                   <a href="#">
-                    {check === "en" ? (
+                    {i18n.language === "en" ? (
                       <div>
                         {t("banner.child5")} <br />
                         {t("banner.child4")}{" "}
@@ -164,7 +161,7 @@ const HeaderHome = () => {
                 </li>
                 <li className="text-center">
                   <a href="#">
-                    {check === "en" ? (
+                    {i18n.language === "en" ? (
                       <div>
                         {t("banner.child7")} <br />
                         {t("banner.child6")}{" "}
@@ -179,7 +176,7 @@ const HeaderHome = () => {
                 </li>
                 <li className="text-center">
                   <a href="#">
-                    {check === "en" ? (
+                    {i18n.language === "en" ? (
                       <div>
                         {t("banner.child8")} <br />
                         {t("banner.child0")}{" "}

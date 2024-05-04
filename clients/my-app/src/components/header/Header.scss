@@ -23,78 +23,42 @@
             color: white;
             align-items: center;
             position: relative;
-
-            &:hover .menu-1 {
-                display: block;
-
-                &:hover .menu-2 {
-                    display: block;
+            gap:10px;
+            li{
+                cursor: pointer;
+                &:hover{
+                    color: white;
                 }
             }
-
-
-
-            .menu-1 {
-                display: none;
-                position: absolute;
-                top: 50px;
-                left: -30px;
-
-
-                li {
-                    cursor: pointer;
-                    color: black;
-                    width: 250px;
-                    padding-left: 10px;
-                    background-color: gold;
+            .li1{
+                cursor: pointer;
+                &:hover .menu-1{
                     display: block;
-                    border: 1px solid gold;
-
-                    &:hover {
-                        background-color: white;
-                        border: 1px solid palevioletred;
-                    }
-
-                    &:hover ::after {
-                        content: "";
-                        cursor: pointer;
-                        width: 50px;
-                        height: 20px;
-                        position: absolute;
-                        top: -10px;
-                        left: -20px;
-                    }
                 }
-
-                .menu-2 {
+                .menu-1 {
                     display: none;
+                    background-color: red;
+                    padding: 0;
+                    width: 200px;
+                    margin: 0;
                     position: absolute;
                     top: 50px;
-                    left: 130px;
-
-                    li {
-                        a {
-                            color: black;
-                            display: block;
-                            text-decoration: none;
-
-                            &:hover {
-                                background-color: white;
-                            }
+                    left: -29px;
+                     li{
+                        background-color: pink;
+                        width: 100%;
+                        padding: 0 30px;
+                        border: 1px solid white;
+                        &:hover{
+                            background-color:gold;
+                            border: 1px solid white;
+                            color: white;
                         }
-
-                    }
-
-
-
-
+                     }
                 }
             }
         }
 
-        .box-1 li:first-child {
-            margin-right: 10px;
-        }
 
         .box-2 {
             margin: 0;
