@@ -195,6 +195,8 @@ const createNewUserService = (data) => {
             gender: data.gender,
             roleId: data.roleId,
             phoneNumber: data.phoneNumber,
+            positionId: data.positionId,
+            image: data.image,
           },
           { raw: true }
         );

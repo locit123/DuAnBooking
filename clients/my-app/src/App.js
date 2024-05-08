@@ -7,18 +7,21 @@ import UserManages from "./components/users/UserManages";
 import { PublicRoute, PrivateRoute } from "./components/authRouter/authRouter";
 import UserRedux from "./components/users/UserRedux";
 
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
-    <Routes>
-      <Route element={<PublicRoute />}>
-        <Route path="/login" element={<Login />} />
-      </Route>
-      <Route element={<PrivateRoute />}>
-        <Route path="/user" element={<UserManages />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/user-redux" element={<UserRedux />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/user" element={<UserManages />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/user-redux" element={<UserRedux />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

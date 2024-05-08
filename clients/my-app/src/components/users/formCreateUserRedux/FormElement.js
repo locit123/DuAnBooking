@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getAllCodeService } from "../../../servers/allCode/serviceAllCode";
+import {
+  createNewUserService,
+  getAllCodeService,
+} from "../../../servers/allCode/serviceAllCode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./FormElement.scss";
 import { SlideshowLightbox } from "lightbox.js-react";
 import "lightbox.js-react/dist/index.css";
+import { toast } from "react-toastify";
 const FormElement = () => {
   const { t, i18n } = useTranslation();
   const [email, setEmail] = useState("");
@@ -15,13 +19,14 @@ const FormElement = () => {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("Nam");
-  const [roleId, setRoleId] = useState(3);
-  const [position, setPosition] = useState(1);
+  const [roleId, setRoleId] = useState("Quản trị viên");
+  const [position, setPosition] = useState("Bác sĩ");
   const [image, setImage] = useState("");
   const [data, setData] = useState({});
   const [data2, setData2] = useState({});
   const [data3, setData3] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+
   const getLanguage = useCallback(() => {
     let getLanguageItem = localStorage.getItem("language");
     if (getLanguageItem) {
@@ -33,8 +38,46 @@ const FormElement = () => {
     getLanguage();
   }, [getLanguage]);
 
-  const handleClickButton = () => {
-    alert("ok");
+  const handleClickButton = async () => {
+    try {
+      if (
+        !(
+          email &&
+          password &&
+          firstName &&
+          lastName &&
+          address &&
+          phoneNumber &&
+          gender &&
+          roleId &&
+          position &&
+          image
+        )
+      ) {
+        toast.error("Vui lòng nhập các trường trên");
+      } else {
+        let res = await createNewUserService(
+          email,
+          password,
+          firstName,
+          lastName,
+          address,
+          gender,
+          roleId,
+          phoneNumber,
+          position,
+          image
+        );
+        console.log(res.data);
+        if (res && res.data && res.data.EC === 0) {
+          toast.success("add success");
+        } else {
+          toast.warning(res.data.EM);
+        }
+      }
+    } catch (error) {
+      console.log("error handleClickButton", error);
+    }
   };
 
   //-------------LOAD DATA GENDER ------------------------------
