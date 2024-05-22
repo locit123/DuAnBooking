@@ -21,15 +21,17 @@ class userController {
   }
   async getAllUsers(req, res, next) {
     try {
-      let id = req.params.id;
-      let result = await resApiUser.getAllUsersService(id);
-      if (result) {
-        return res.status(200).json({
-          EM: result.EM,
-          EC: result.EC,
-          DT: result.DT,
-        });
-      }
+      setTimeout(async () => {
+        let id = req.params.id;
+        let result = await resApiUser.getAllUsersService(id);
+        if (result) {
+          return res.status(200).json({
+            EM: result.EM,
+            EC: result.EC,
+            DT: result.DT,
+          });
+        }
+      }, 1000);
     } catch (error) {
       console.log("error", error);
       return res.status(500).json({

@@ -98,6 +98,7 @@ const getAllUsersService = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let users = "";
+      console.log(id);
       if (id === "all") {
         users = await db.User.findAll({
           attributes: {

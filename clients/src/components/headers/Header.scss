@@ -1,0 +1,26 @@
+.header{
+    height: 50px;
+    background-color: #0172bb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    .content-box{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .p{
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .span{
+            height: 50px;
+            width: 2px;
+            background-color: white;
+        }
+    }
+    .icon{
+        color: white;
+    }
+}
