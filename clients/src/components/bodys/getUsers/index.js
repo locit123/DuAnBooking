@@ -16,7 +16,6 @@ function TableUsers(props) {
   const isLoading = useSelector(isLoadingState);
   const isError = useSelector(isErrorState);
 
-  console.log("DATA", data, isLoading, isError);
   useEffect(() => {
     dispatch(getTypeFetch.getRequest("all"));
   }, [dispatch]);

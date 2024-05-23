@@ -34,3 +34,21 @@ export const deleteTypeFetch = createActions({
   deleteSuccess: (payload) => payload,
   deleteFailed: (payload) => payload,
 });
+
+//------------FETCH-API-ALLCODE------------
+export const getTypeFetchAllCode1 = createActions({
+  getAllCodeRequest: (payload) => payload,
+  getAllCodeSuccess: (payload) => payload,
+  getAllCodeFailed: (payload) => payload,
+});
+export const getTypeFetchAllCode2 = createActions({
+  getRoleRequest: (payload) => payload,
+  getRoleSuccess: (payload) => payload,
+  getRoleFailed: (payload) => payload,
+});
+
+export const getTypeFetchAllCode3 = createActions({
+  getPositionRequest: (payload) => payload,
+  getPositionSuccess: (payload) => payload,
+  getPositionFailed: (payload) => payload,
+});

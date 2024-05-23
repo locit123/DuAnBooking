@@ -11,5 +11,18 @@ export const addressState = (state) => state.value.address;
 export const genderState = (state) => state.value.gender;
 export const roleState = (state) => state.value.role;
 export const phoneNumberState = (state) => state.value.phoneNumber;
+export const positionState = (state) => state.value.position;
 export const imageState = (state) => state.value.image;
 export const statusState = (state) => state.value.status;
+//--------------------GENDER--------------------
+export const genderIsLoadingState = (state) => state.gender.isLoading;
+export const genderIsErrorState = (state) => state.gender.isError;
+export const genderDataState = (state) => state.gender.genders;
+//--------------------Role--------------------
+export const roleIsLoadingState = (state) => state.role.isLoading;
+export const roleIsErrorState = (state) => state.role.isError;
+export const roleDataState = (state) => state.role.roles;
+//--------------------POSITION--------------------
+export const positionIsLoadingState = (state) => state.position.isLoading;
+export const positionIsErrorState = (state) => state.position.isError;
+export const positionDataState = (state) => state.position.positions;

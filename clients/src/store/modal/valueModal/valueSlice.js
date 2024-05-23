@@ -6,9 +6,10 @@ export const initState = {
   firstName: "",
   lastName: "",
   address: "",
-  gender: "Male",
-  role: "Patient",
+  gender: "M",
+  role: "R3",
   phoneNumber: "",
+  position: "P0",
   image: "",
   status: ["create"],
 };
@@ -54,6 +55,11 @@ const valueSlice = (state = initState, action) => {
       return {
         ...state,
         phoneNumber: action.payload,
+      };
+    case typeAction(typeValue.setPosition):
+      return {
+        ...state,
+        position: action.payload,
       };
     case typeAction(typeValue.setImage):
       return {

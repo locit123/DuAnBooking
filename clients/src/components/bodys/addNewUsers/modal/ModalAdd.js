@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,12 +6,22 @@ import {
   addressState,
   emailState,
   firstNameState,
+  genderDataState,
+  genderIsErrorState,
+  genderIsLoadingState,
   genderState,
   imageState,
   lastNameState,
   modalState,
   passwordState,
   phoneNumberState,
+  positionDataState,
+  positionIsErrorState,
+  positionIsLoadingState,
+  positionState,
+  roleDataState,
+  roleIsErrorState,
+  roleIsLoadingState,
   roleState,
   statusState,
 } from "../../../../store/selector";
@@ -20,9 +30,15 @@ import typeValue from "../../../../store/modal/valueModal/actions";
 import {
   deleteTypeFetch,
   getTypeFetch,
+  getTypeFetchAllCode1,
+  getTypeFetchAllCode2,
+  getTypeFetchAllCode3,
   postTypeFetch,
   putTypeFetch,
 } from "../../../../store/saga/actions";
+import LoadingGender from "./Loading/LoadingGender";
+import LoadingRole from "./Loading/LoadingRole";
+import LoadingPosition from "./Loading/LoadingPosition";
 
 function ModalAdd(props) {
   const dispatch = useDispatch();
@@ -35,9 +51,22 @@ function ModalAdd(props) {
   const gender = useSelector(genderState);
   const roleId = useSelector(roleState);
   const phoneNumber = useSelector(phoneNumberState);
+  const positionId = useSelector(positionState);
   const image = useSelector(imageState);
   const status = useSelector(statusState);
-  console.log(status);
+
+  const isLoadingGender = useSelector(genderIsLoadingState);
+  const isErrorGender = useSelector(genderIsErrorState);
+  const dataGender = useSelector(genderDataState);
+
+  const isLoadingRole = useSelector(roleIsLoadingState);
+  const isErrorRole = useSelector(roleIsErrorState);
+  const dataRole = useSelector(roleDataState);
+
+  const isLoadingPosition = useSelector(positionIsLoadingState);
+  const isErrorPosition = useSelector(positionIsErrorState);
+  const dataPosition = useSelector(positionDataState);
+
   const handleClose = useCallback(() => {
     dispatch(hideModal());
   }, [dispatch]);
@@ -67,6 +96,7 @@ function ModalAdd(props) {
         gender,
         roleId,
         phoneNumber,
+        positionId,
         image,
       };
       dispatch(postTypeFetch.postRequest(payload));
@@ -79,6 +109,7 @@ function ModalAdd(props) {
       dispatch(typeValue.setGender(""));
       dispatch(typeValue.setRole(""));
       dispatch(typeValue.setPhoneNumber(""));
+      dispatch(typeValue.setPosition(""));
       dispatch(typeValue.setImage(""));
       dispatch(hideModal());
     }
@@ -91,6 +122,7 @@ function ModalAdd(props) {
         address,
         gender,
         roleId,
+        positionId,
       };
       dispatch(putTypeFetch.putRequest(id, payload));
       dispatch(getTypeFetch.getRequest("all"));
@@ -113,7 +145,14 @@ function ModalAdd(props) {
     phoneNumber,
     image,
     status,
+    positionId,
   ]);
+  //-------------GET-API-ALLCODE---------------
+  useEffect(() => {
+    dispatch(getTypeFetchAllCode1.getAllCodeRequest("GENDER"));
+    dispatch(getTypeFetchAllCode2.getRoleRequest("ROLE"));
+    dispatch(getTypeFetchAllCode3.getPositionRequest("POSITION"));
+  }, [dispatch]);
   return (
     <>
       <Modal show={modal} onHide={handleClose}>
@@ -199,7 +238,7 @@ function ModalAdd(props) {
               </div>
               <div className="form-group">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-4">
                     <label>gender</label>
                     <select
                       className="form-control"
@@ -208,12 +247,18 @@ function ModalAdd(props) {
                         dispatch(typeValue.setGender(e.target.value))
                       }
                     >
-                      <option value={"Male"}>Male</option>
-                      <option value={"Female"}>Female</option>
-                      <option value={"Other"}>Other</option>
+                      {isLoadingGender === false &&
+                      isErrorGender === false &&
+                      dataGender.length > 0 ? (
+                        dataGender.map((item) => (
+                          <LoadingGender key={item.id} item={item} />
+                        ))
+                      ) : (
+                        <div>Loading ...</div>
+                      )}
                     </select>
                   </div>
-                  <div className="col-6">
+                  <div className="col-4">
                     <label>Role</label>
                     <select
                       className="form-control"
@@ -222,9 +267,35 @@ function ModalAdd(props) {
                         dispatch(typeValue.setRole(e.target.value))
                       }
                     >
-                      <option value="Admin">Admin</option>
-                      <option value={"Doctor"}>Doctor</option>
-                      <option value={"Patient"}>Patient</option>
+                      {isLoadingRole === false &&
+                      isErrorRole === false &&
+                      dataRole.length > 0 ? (
+                        dataRole.map((item) => (
+                          <LoadingRole key={item.key} item={item} />
+                        ))
+                      ) : (
+                        <div>Loading...</div>
+                      )}
+                    </select>
+                  </div>
+                  <div className="col-4">
+                    <label>Position</label>
+                    <select
+                      className="form-control"
+                      value={positionId}
+                      onChange={(e) =>
+                        dispatch(typeValue.setPosition(e.target.value))
+                      }
+                    >
+                      {isLoadingPosition === false &&
+                      isErrorPosition === false &&
+                      dataPosition.length > 0 ? (
+                        dataPosition.map((item) => (
+                          <LoadingPosition key={item.key} item={item} />
+                        ))
+                      ) : (
+                        <div>Loading...</div>
+                      )}
                     </select>
                   </div>
                 </div>

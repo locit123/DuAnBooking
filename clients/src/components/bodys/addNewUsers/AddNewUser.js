@@ -15,9 +15,10 @@ const AddNewUser = (props) => {
     dispatch(typeValue.setFirstName(""));
     dispatch(typeValue.setLastName(""));
     dispatch(typeValue.setAddress(""));
-    dispatch(typeValue.setGender("Male"));
-    dispatch(typeValue.setRole("Patient"));
+    dispatch(typeValue.setGender("M"));
+    dispatch(typeValue.setRole("R3"));
     dispatch(typeValue.setPhoneNumber(""));
+    dispatch(typeValue.setPosition("P0"));
     dispatch(typeValue.setImage(""));
   }, [dispatch]);
   return (

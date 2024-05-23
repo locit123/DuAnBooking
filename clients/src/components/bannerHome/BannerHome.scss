@@ -1,0 +1,94 @@
+.content-banner{    
+    position: relative;
+    .img{
+        height: 550px;
+        width: 100%;
+        img{
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            object-fit: cover;
+        }
+    }
+    .content-box{
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+
+        .box-1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 17px;
+            margin-bottom: 30px;
+            span{
+                color: white;
+                text-shadow: 1px 1px 2px #fff, 2px 2px 4px #555, 3px 3px 6px #aaa;
+                font-size: 2rem;
+                &:last-child{
+                    font-weight: bold;
+                }
+            }
+        }
+        .box-2{
+            border: 1px solid #ffcd00;
+            width: 450px;
+            margin: 0 auto;
+            border-radius: 50px;
+            background-color: #ffcd00;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            .icon-search{
+                padding-left: 20px;
+            }
+            input{
+                flex: 1;
+                outline: none;
+                border: none;
+                color: #b68f09;
+                background-color: #ffcd00;
+                padding: 10px;
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+            }
+        }
+    }
+    .box-footer{
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 70px;
+        .box-1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .icon{
+                width: 70px;
+                border-radius: 70px;
+                height: 70px;
+                background-color: white;
+                position: relative;
+                box-shadow: 2px 2px 5px #555;
+                .icon-bank{
+                    font-size: 50px;
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    right: 0;
+                    bottom: 8px;
+
+                }
+            }
+            span{
+                font-weight: bold;
+            }
+        }
+    }
+}

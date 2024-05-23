@@ -13,6 +13,7 @@ const typeValue = createActions({
   setGender: (payload) => payload,
   setRole: (payload) => payload,
   setPhoneNumber: (payload) => payload,
+  setPosition: (payload) => payload,
   setImage: (payload) => payload,
   setStatus: (payload) => payload,
 });
