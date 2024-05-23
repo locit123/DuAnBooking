@@ -259,7 +259,16 @@ const deleteUserService = (id) => {
 const putUserService = async (idUser, data) => {
   try {
     let id = await db.User.findOne({ where: { id: idUser } });
-    if (!(id && data.firstName && data.lastName && data.address)) {
+    if (
+      !(
+        id &&
+        data.firstName &&
+        data.lastName &&
+        data.address &&
+        data.gender &&
+        data.roleId
+      )
+    ) {
       return {
         EM: "Vui lòng không để trống dữ liệu",
         EC: 1,
@@ -271,6 +280,8 @@ const putUserService = async (idUser, data) => {
           firstName: data.firstName,
           lastName: data.lastName,
           address: data.address,
+          gender: data.gender,
+          roleId: data.roleId,
         },
         { where: { id: idUser } }
       );

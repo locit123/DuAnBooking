@@ -39,7 +39,9 @@ function TableUsers(props) {
           data.map((item) => <LoadDataUser key={item.id} item={item} />)
         ) : (
           <tr>
-            <td colSpan={5}>loading...</td>
+            <td colSpan={5} className="text-center">
+              loading...
+            </td>
           </tr>
         )}
       </tbody>

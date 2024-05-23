@@ -1,4 +1,10 @@
-import { getType, getTypeFetch } from "../saga/actions";
+import {
+  deleteTypeFetch,
+  getType,
+  getTypeFetch,
+  postTypeFetch,
+  putTypeFetch,
+} from "../saga/actions";
 
 export const initState = {
   isLoading: false,
@@ -27,6 +33,70 @@ const userSlice = (state = initState, action) => {
       };
       break;
     case getType(getTypeFetch.getFailed):
+      newState = {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+      break;
+    //-------POST------------
+    case getType(postTypeFetch.postRequest):
+      newState = {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+      break;
+    case getType(postTypeFetch.postSuccess):
+      newState = {
+        ...state,
+        isError: false,
+        users: [...state.users, action.payload],
+      };
+      break;
+    case getType(postTypeFetch.postFailed):
+      newState = {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+      break;
+    //-------PUT------------
+    case getType(putTypeFetch.putRequest):
+      newState = {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+      break;
+    case getType(putTypeFetch.putSuccess):
+      newState = {
+        ...state,
+        isError: false,
+      };
+      break;
+    case getType(putTypeFetch.putFailed):
+      newState = {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+      break;
+    //-------DELETE------------
+    case getType(deleteTypeFetch.deleteRequest):
+      newState = {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+      break;
+    case getType(deleteTypeFetch.deleteSuccess):
+      newState = {
+        ...state,
+        isError: false,
+      };
+      break;
+    case getType(deleteTypeFetch.deleteFailed):
       newState = {
         ...state,
         isLoading: false,

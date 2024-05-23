@@ -5,21 +5,28 @@ export const initState = {
 };
 
 const modalSlice = (state = initState, action) => {
+  console.log("state", state);
+  console.log("action", action);
+  let newState;
   switch (action.type) {
     case SHOW_MODAL:
-      return {
+      newState = {
         ...state,
         isShow: true,
       };
+      break;
     case HIDE_MODAL:
-      return {
+      newState = {
         ...state,
         isShow: false,
       };
+      break;
 
     default:
       return state;
   }
+  console.log("newState", newState);
+  return newState;
 };
 
 export default modalSlice;
