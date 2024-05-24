@@ -3,6 +3,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { HeaderHome } from "./HeaderHome";
 import { BannerHome } from "./BannerHome";
+import { BodyHome } from "./BodyHome";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -10,12 +11,14 @@ i18n.use(initReactI18next).init({
       translation: {
         ...HeaderHome.en,
         ...BannerHome.en,
+        ...BodyHome.en,
       },
     },
     vn: {
       translation: {
         ...HeaderHome.vn,
         ...BannerHome.vn,
+        ...BodyHome.vn,
       },
     },
     // Thêm các ngôn ngữ khác nếu cần

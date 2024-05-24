@@ -1,7 +1,25 @@
 .content-header {
     height: 70px;
     display: flex;
-    padding: 0 100px;
+    padding: 0 70px;
+    z-index: 2;
+    border: 1px solid white;
+    position: fixed;
+    width: 100%;
+
+    .ant-float-btn-body {
+        background-color: gold;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+            background-color: gold;
+        }
+
+        .icon {
+            color: white;
+        }
+    }
 
     .box-1 {
         flex: 1;
@@ -78,9 +96,127 @@
             .clickVn {
                 color: gold;
             }
-            .noneClick{
+
+            .noneClick {
                 opacity: 0.2;
-                &:hover{
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .clickEn {
+                color: blueviolet;
+            }
+        }
+    }
+}
+
+.content-header2 {
+    height: 70px;
+    display: flex;
+    padding: 0 70px;
+    z-index: 2;
+    background-color: white;
+    border: 1px solid pink;
+    box-shadow: 2px 2px 2px pink;
+    position: fixed;
+    width: 100%;
+
+    .ant-float-btn-body {
+        background-color: gold;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+            background-color: gold;
+        }
+
+        .icon {
+            color: white;
+        }
+    }
+
+    .box-1 {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        line-height: 70px;
+        gap: 10px;
+
+        .icon-menu {
+            color: #a7a7a7;
+        }
+
+        .icon-plus {
+            color: #4eb1e4;
+        }
+
+        span {
+            color: #ffbc00;
+            font-size: 1.5rem;
+        }
+    }
+
+    .box-2 {
+        flex: 4;
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+
+        .text-1 {
+            gap: 10px;
+
+            li {
+                list-style: none;
+
+                &:first-child {
+                    color: black;
+                    font-weight: bold;
+                }
+
+                &:last-child {
+                    color: #afb2b1;
+                }
+            }
+        }
+
+        .text-2 {}
+
+        .text-3 {}
+
+        .text-4 {}
+    }
+
+    .box-3 {
+        flex: 1;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: flex-end;
+
+        .text-1 {
+            display: flex;
+            gap: 7px;
+
+            .icon-support {
+                color: #58b1c9;
+            }
+
+        }
+
+        .text-2 {
+            display: flex;
+            gap: 10px;
+
+            .clickVn {
+                color: gold;
+            }
+
+            .noneClick {
+                opacity: 0.2;
+
+                &:hover {
                     opacity: 1;
                 }
             }

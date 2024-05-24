@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { FloatButton } from "antd";
+import { CaretUpOutlined } from "@ant-design/icons";
 import "./Header.scss";
 import {
   MenuOutlined,
@@ -10,6 +12,10 @@ import { setLanguage } from "../../store/languages/actions";
 import { useTranslation } from "react-i18next";
 import { getLanguageState } from "../../store/selector";
 const Header = (props) => {
+  const [scroll, setScroll] = useState(false);
+  const [scrollToTop, setScrollToTop] = useState(false);
+
+  console.log("scroll", scroll);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector(getLanguageState);
@@ -23,8 +29,33 @@ const Header = (props) => {
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language, i18n]);
+  //xu li header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+
+      if (window.scrollY > 200) {
+        setScrollToTop(true);
+      } else {
+        setScrollToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  const handleClickToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
-    <div className="content-header">
+    <div className={scroll ? "content-header2" : "content-header"}>
       <div className="box-1">
         <MenuOutlined className="icon-menu" />
         <PlusCircleOutlined className="icon-plus" />
@@ -67,6 +98,12 @@ const Header = (props) => {
             EN
           </span>
         </div>
+      </div>
+      <div hidden={scrollToTop ? false : true}>
+        <FloatButton
+          onClick={handleClickToTop}
+          icon={<CaretUpOutlined className="icon" />}
+        />
       </div>
     </div>
   );
