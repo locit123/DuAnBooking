@@ -6,6 +6,7 @@ export const BodyHome = {
     DoctorFeaturedLastWeek: "Doctor featured last week",
     Handbook: "Handbook",
     ALL_ARTICLES: "ALL ARTICLES",
+    MediaTalksAboutLOC_FUHO: "Media talks about LOC-FUHO",
   },
   vn: {
     PopularizeExpertise: "Chuyên khoa phổ biến",
@@ -14,5 +15,6 @@ export const BodyHome = {
     DoctorFeaturedLastWeek: "Bác sĩ nổi bật tuần qua",
     Handbook: "Cẩm nang",
     ALL_ARTICLES: "TẤT CẢ BÀI VIẾT",
+    MediaTalksAboutLOC_FUHO: "Truyền thông nói về LOC-FUHO",
   },
 };

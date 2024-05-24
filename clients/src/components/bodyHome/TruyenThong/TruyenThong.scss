@@ -17,6 +17,17 @@
         height: 350px;
         .item-1{
             flex: 1;
+            /* Old CSS properties */
+                .element {
+                    -ms-high-contrast: active;
+                    -ms-high-contrast-adjust: none;
+                }
+            
+                /* New standard for forced colors */
+                .element {
+                    forced-color-adjust: none;
+                    /* New property */
+                }
             
         }
         .item-2{

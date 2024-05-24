@@ -10,6 +10,8 @@ import {
 } from "./actions";
 import * as Api from "../../apis/FetchApiUser";
 import * as ApiAllCode from "../../apis/FetchApiAllCode";
+import * as ApiLogin from "../../apis/FetchApiLoginUser";
+import { getTypeLoginFetch } from "../FetchApiLogin/actions";
 //------------FETCH-API-USERS-----------
 function* fetchAllUser(action) {
   try {
@@ -95,6 +97,17 @@ function* fetchPositionAllCode(action) {
     yield put(getTypeFetchAllCode3.getPositionFailed(error));
   }
 }
+
+function* fetchLoginUser(action) {
+  try {
+    let res = yield call(ApiLogin.postLogin, action.payload);
+    let data = res.data;
+    yield put(getTypeLoginFetch.postLoginSuccess(data));
+  } catch (error) {
+    yield put(getTypeLoginFetch.postLoginFailed(error));
+  }
+}
+
 function* mySaga() {
   yield takeLatest(getTypeFetch.getRequest, fetchAllUser);
   yield takeLatest(postTypeFetch.postRequest, fetchPostUser);
@@ -106,6 +119,7 @@ function* mySaga() {
     getTypeFetchAllCode3.getPositionRequest,
     fetchPositionAllCode
   );
+  yield takeLatest(getTypeLoginFetch.postLoginRequest, fetchLoginUser);
 }
 
 export default mySaga;

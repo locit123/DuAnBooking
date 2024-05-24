@@ -28,3 +28,7 @@ export const positionIsErrorState = (state) => state.position.isError;
 export const positionDataState = (state) => state.position.positions;
 //-------------------LANGUAGE----------------------
 export const getLanguageState = (state) => state.language.languages;
+//-------------------LOGIN-USER--------------------
+export const getDataLoginState = (state) => state.loginUser.login;
+export const getIsLoadingLoginState = (state) => state.loginUser.isLoading;
+export const getIsErrorLoginState = (state) => state.loginUser.isError;

@@ -10,12 +10,29 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "./config/Language";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <I18nextProvider i18n={i18n}>
       <React.StrictMode>
         <App />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition="Bounce"
+        />
+        <ToastContainer />
       </React.StrictMode>
     </I18nextProvider>
   </Provider>

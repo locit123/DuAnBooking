@@ -6,6 +6,7 @@ import allCodeSlice from "./fetchApiAllCode/allCodeSlice";
 import roleSlice from "./fetchApiAllCode/roleSlice";
 import positionSlice from "./fetchApiAllCode/positionSlice";
 import languageSlice from "./languages/languageSlice";
+import loginSlice from "./FetchApiLogin/loginSlice";
 
 const rootReducer = combineReducers({
   modal: modalSlice,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   role: roleSlice,
   position: positionSlice,
   language: languageSlice,
+  loginUser: loginSlice,
 });
 
 export default rootReducer;
