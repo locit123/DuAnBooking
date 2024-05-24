@@ -1,0 +1,210 @@
+.content-box-camNang{
+    background-color: #f4f4f4;
+    height: 300px;
+    .slider-container4 {
+        margin-top: 40px;
+        padding-top: 20px;
+        .content-box {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+    
+    
+            button {
+                background-color: #ebebed;
+                border: 1px solid #ebebed;
+                color: #888480;
+                padding: 5px 10px;
+                opacity: 1;
+    
+                &:hover {
+                    opacity: 0.75;
+                }
+            }
+        }
+    
+        .slick-slider {
+            position: relative;
+            height: 200px;
+    
+            .box-1 {
+                height: 200px;
+    
+                .item-1 {
+                    height: 100%;
+                    margin-right: 5px;
+                    display: flex;
+    
+                    .img-1 {
+                        flex: 1;
+    
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            image-rendering: pixelated;
+                            object-fit: cover;
+                        }
+    
+                    }
+                    .p {
+                        flex: 1;
+                        padding-left: 5px;
+    
+                        p {
+                            font-size: 1.3rem;
+                            font-weight: bold;
+                            text-align: justify;
+                        }
+                    }
+                }
+            }
+    
+            .box-2 {
+                height: 200px;
+    
+                .item-2 {
+                    height: 100%;
+                    margin-left: 5px;
+                    display: flex;
+                    .img-2 {
+                        flex: 1;
+    
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            image-rendering: pixelated;
+                            object-fit: cover;
+                        }
+                    }
+    
+                    .p2 {
+                        flex: 1;
+                        padding-left: 5px;
+    
+                        p {
+                            font-size: 1.3rem;
+                            font-weight: bold;
+                            text-align: justify;
+                        }
+                    }
+                }
+            }
+    
+            .box-3 {
+                height: 200px;
+    
+                .item-3 {
+                    height: 100%;
+                    margin-right: 5px;
+                    display: flex;
+                    .img-2 {
+                            flex: 1;
+                    
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                image-rendering: pixelated;
+                                object-fit: cover;
+                            }
+                        }
+                    
+                        .p2 {
+                            flex: 1;
+                            padding-left: 5px;
+                    
+                            p {
+                                font-size: 1.3rem;
+                                font-weight: bold;
+                                text-align: justify;
+                            }
+                        }
+                }
+            }
+    
+            .box-4 {
+                height: 200px;
+    
+                .item-4 {
+                    height: 100%;
+                    margin-left: 5px;
+                    display: flex;
+                    .img-2 {
+                            flex: 1;
+                    
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                image-rendering: pixelated;
+                                object-fit: cover;
+                            }
+                        }
+                    
+                        .p2 {
+                            flex: 1;
+                            padding-left: 5px;
+                    
+                            p {
+                                font-size: 1.3rem;
+                                font-weight: bold;
+                                text-align: justify;
+                            }
+                        }
+                }
+            }
+    
+    
+            .slick-prev {
+                position: absolute;
+                top: 50%;
+                left: calc(100px - 125px);
+                z-index: 1;
+                width: 50px;
+                height: 50px;
+    
+                &:hover {
+                    opacity: .25;
+    
+                }
+    
+                &::before {
+                    content: '←';
+                    background-image: url(../../../images/anh-dep-hinh-nen-thien-nhien-20.jpg);
+                    font-size: 50px;
+                    opacity: 1;
+                    padding: 8px 5px 0 5px;
+                    color: #ebebed;
+                    box-shadow: 1px 1px 2px black;
+                    border-radius: 0 !important;
+    
+    
+                }
+            }
+    
+            .slick-next {
+                position: absolute;
+                top: 50%;
+                right: calc(100px - 120px);
+                z-index: 1;
+                width: 50px;
+                height: 50px;
+    
+                &:hover {
+                    opacity: .25;
+    
+                }
+    
+                &::before {
+                    content: '→';
+                    background-image: url(../../../images/anh-dep-hinh-nen-thien-nhien-20.jpg);
+                    font-size: 50px;
+                    opacity: 1;
+                    padding: 8px 5px 0 5px;
+                    color: #ebebed;
+                    box-shadow: 1px 1px 2px black;
+                    border-radius: 0 !important;
+                }
+            }
+        }
+    }
+}

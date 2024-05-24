@@ -1,0 +1,130 @@
+.slider-container3 {
+    margin-top: 60px;
+
+
+    .content-box {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        button {
+            background-color: #ebebed;
+            border: 1px solid #ebebed;
+            color: #888480;
+            padding: 5px 10px;
+            opacity: 1;
+
+            &:hover {
+                opacity: 0.75;
+            }
+        }
+    }
+
+    .slick-slider {
+        position: relative;
+        height: 300px;
+        display: flex;
+
+
+        .box-1 {
+            height: 300px;
+
+            .item-1 {
+                border: 1px solid #ebebed;
+                background-color: white;
+                height: 100%;
+                margin-right: 10px;
+                box-shadow: 1px 2px 2px #ebebed;
+
+                .img {
+                    width: 200px;
+                    height: 200px;
+                    margin: 0 auto;
+                    border-radius: 200px;
+
+                    img {
+                        padding: 10px;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 200px;
+                        image-rendering: pixelated;
+                        object-fit: cover;
+                    }
+                }
+
+                .p-s {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    p {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                   
+                }
+            }
+
+            .item-2 {
+                margin-right: 0;
+            }
+        }
+
+
+        .slick-prev {
+            position: absolute;
+            top: 125px;
+            left: calc(100px - 125px);
+            z-index: 1;
+            width: 50px;
+            height: 50px;
+
+            &:hover {
+                opacity: .25;
+
+            }
+
+            &::before {
+                content: '←';
+                background-image: url(../../../images/anh-dep-hinh-nen-thien-nhien-20.jpg);
+                font-size: 50px;
+                opacity: 1;
+                padding: 8px 5px 0 5px;
+                color: #ebebed;
+                box-shadow: 1px 1px 2px black;
+                border-radius: 0 !important;
+
+
+            }
+        }
+
+        .slick-next {
+            position: absolute;
+            top: 125px;
+            right: calc(100px - 120px);
+            z-index: 1;
+            width: 50px;
+            height: 50px;
+
+            &:hover {
+                opacity: .25;
+
+            }
+
+            &::before {
+                content: '→';
+                background-image: url(../../../images/anh-dep-hinh-nen-thien-nhien-20.jpg);
+                font-size: 50px;
+                opacity: 1;
+                padding: 8px 5px 0 5px;
+                color: #ebebed;
+                box-shadow: 1px 1px 2px black;
+                border-radius: 0 !important;
+            }
+        }
+    }
+
+}

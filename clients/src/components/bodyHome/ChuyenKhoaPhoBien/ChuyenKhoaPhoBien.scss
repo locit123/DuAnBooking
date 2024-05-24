@@ -1,0 +1,104 @@
+.slider-container {
+    margin-top: 110px;
+    .content-box {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+            background-color: #ebebed;
+            border: 1px solid #ebebed;
+            color: #888480;
+            padding: 5px 10px;
+            opacity: 1;
+
+            &:hover {
+                opacity: 0.75;
+            }
+        }
+    }
+
+    .slick-slider {
+        position: relative;
+        height: 240px;
+        display: flex;
+
+        .img-1 {
+            padding-right: 10px;
+            height: 240px;
+
+            img {
+                object-fit: cover;
+                image-rendering: pixelated;
+            }
+
+            h5 {
+                margin-top: 5px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .img-2 {
+            padding-right: 0;
+        }
+
+        .slick-list {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slick-prev {
+            position: absolute;
+            top: 100px;
+            left: calc(100px - 125px);
+            z-index: 1;
+            width: 50px;
+            height: 50px;
+
+            &:hover {
+                opacity: .25;
+
+            }
+
+            &::before {
+                content: '←';
+                background-image: url(../../../images/anh-dep-hinh-nen-thien-nhien-20.jpg);
+                font-size: 50px;
+                opacity: 1;
+                padding: 8px 5px 0 5px;
+                color: #ebebed;
+                box-shadow: 1px 1px 2px black;
+                border-radius: 0 !important;
+
+
+            }
+        }
+
+        .slick-next {
+            position: absolute;
+            top: 100px;
+            right: calc(100px - 120px);
+            z-index: 1;
+            width: 50px;
+            height: 50px;
+
+            &:hover {
+                opacity: .25;
+
+            }
+
+            &::before {
+                content: '→';
+                background-image: url(../../../images/anh-dep-hinh-nen-thien-nhien-20.jpg);
+                font-size: 50px;
+                opacity: 1;
+                padding: 8px 5px 0 5px;
+                color: #ebebed;
+                box-shadow: 1px 1px 2px black;
+                border-radius: 0 !important;
+            }
+        }
+    }
+
+}
