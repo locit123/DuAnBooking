@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import "./Header.scss";
 import {
   MenuOutlined,
   PlusCircleOutlined,
   QuestionCircleFilled,
 } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../../store/languages/actions";
+import { useTranslation } from "react-i18next";
+import { getLanguageState } from "../../store/selector";
 const Header = (props) => {
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const language = useSelector(getLanguageState);
+
+  const handleClickLanguage = useCallback(
+    (value) => {
+      dispatch(setLanguage(value));
+    },
+    [dispatch]
+  );
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
   return (
     <div className="content-header">
       <div className="box-1">
@@ -15,30 +32,40 @@ const Header = (props) => {
       </div>
       <div className="box-2">
         <ul className="text-1">
-          <li>Chuyên khoa</li>
-          <li>Tìm bác sĩ theo chuyên khoa</li>
+          <li>{t("Specialist")}</li>
+          <li>{t("FindDoctorsBySpecialty")}</li>
         </ul>
         <ul className="text-1 text-2">
-          <li>Cơ sở y tế</li>
-          <li>Chọn bệnh viện phòng khám</li>
+          <li>{t("HealthFacilities")}</li>
+          <li>{t("ChooseAHospitalOrClinic")}</li>
         </ul>
         <ul className="text-1 text-3">
-          <li>Bác sĩ</li>
-          <li>Chọn bác sĩ giỏi</li>
+          <li>{t("Doctor")}</li>
+          <li>{t("ChooseAGoodDoctor")}</li>
         </ul>
         <ul className="text-1 text-4">
-          <li>Gói khám</li>
-          <li>khám sức khỏe tổng quát</li>
+          <li>{t("ExaminationPackage")}</li>
+          <li>{t("GeneralHealthCheck")}</li>
         </ul>
       </div>
       <div className="box-3">
         <div className="text-1">
           <QuestionCircleFilled className="icon-support" />
-          <span>Hỗ trợ</span>
+          <span>{t("Support")}</span>
         </div>
         <div className="text-2">
-          <span>VN</span>
-          <span>EN</span>
+          <span
+            className={language === "vn" ? "clickVn" : "noneClick"}
+            onClick={() => handleClickLanguage("vn")}
+          >
+            VN
+          </span>
+          <span
+            className={language === "en" ? "clickEn" : "noneClick"}
+            onClick={() => handleClickLanguage("en")}
+          >
+            EN
+          </span>
         </div>
       </div>
     </div>

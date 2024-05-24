@@ -1,8 +1,8 @@
 .content-header {
     height: 70px;
-    background-color: pink;
     display: flex;
     padding: 0 100px;
+
     .box-1 {
         flex: 1;
         display: flex;
@@ -29,15 +29,19 @@
         display: flex;
         align-items: center;
         padding-top: 10px;
+
         .text-1 {
             gap: 10px;
-            li{
+
+            li {
                 list-style: none;
-                &:first-child{
+
+                &:first-child {
                     color: black;
                     font-weight: bold;
                 }
-                &:last-child{
+
+                &:last-child {
                     color: #afb2b1;
                 }
             }
@@ -49,23 +53,41 @@
 
         .text-4 {}
     }
-    .box-3{
+
+    .box-3 {
         flex: 1;
         display: flex;
         gap: 20px;
         align-items: center;
         justify-content: flex-end;
-        .text-1{
+
+        .text-1 {
             display: flex;
             gap: 7px;
-            .icon-support{
+
+            .icon-support {
                 color: #58b1c9;
             }
 
         }
-        .text-2{
+
+        .text-2 {
             display: flex;
             gap: 10px;
+
+            .clickVn {
+                color: gold;
+            }
+            .noneClick{
+                opacity: 0.2;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+
+            .clickEn {
+                color: blueviolet;
+            }
         }
     }
 }

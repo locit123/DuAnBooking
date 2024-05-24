@@ -10,7 +10,9 @@ import {
   UserAddOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 const BannerHome = (props) => {
+  const { t } = useTranslation();
   return (
     <div className="content-banner">
       <div className="img">
@@ -19,12 +21,12 @@ const BannerHome = (props) => {
       <div>
         <div className="content-box">
           <div className="box-1">
-            <span>NỀN TẢNG Y TẾ</span>
-            <span>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</span>
+            <span>{t("MEDICAL_FOUNDATION")}</span>
+            <span>{t("COMPREHENSIVE_HEALTH_CARE")}</span>
           </div>
           <div className="box-2">
             <SearchOutlined className="icon-search" />
-            <input placeholder="Tìm lý do khám" />
+            <input placeholder={t("FindAReasonToTest")} />
           </div>
         </div>
         <div className="box-footer">
@@ -32,43 +34,43 @@ const BannerHome = (props) => {
             <div className="icon">
               <BankFilled className="icon-bank" />
             </div>
-            <span>Khám</span>
-            <span>Chuyên Khoa</span>
+            <span>{t("Examination")}</span>
+            <span>{t("Specialist")}</span>
           </div>
           <div className="box-1">
             <div className="icon">
               <MobileFilled className="icon-bank" />
             </div>
-            <span>Khám</span>
-            <span>từ xa</span>
+            <span>{t("Examination")}</span>
+            <span>{t("fromFarAway")}</span>
           </div>
           <div className="box-1">
             <div className="icon">
               <BookFilled className="icon-bank" />
             </div>
-            <span>Khám</span>
-            <span>tổng quát</span>
+            <span>{t("Examination")}</span>
+            <span>{t("generality")}</span>
           </div>
           <div className="box-1">
             <div className="icon">
               <MedicineBoxFilled className="icon-bank" />
             </div>
-            <span>Xét nghiệm</span>
-            <span>y học</span>
+            <span>{t("Test")}</span>
+            <span>{t("medicine")}</span>
           </div>
           <div className="box-1">
             <div className="icon">
               <UserAddOutlined className="icon-bank" />
             </div>
-            <span>Sức khỏe</span>
-            <span>tinh thần</span>
+            <span>{t("Health")}</span>
+            <span>{t("spirit")}</span>
           </div>
           <div className="box-1">
             <div className="icon">
               <HeartFilled className="icon-bank" />
             </div>
-            <span>Khám</span>
-            <span>nha Khoa</span>
+            <span>{t("Examination")}</span>
+            <span>{t("dentistry")}</span>
           </div>
         </div>
       </div>

@@ -26,3 +26,5 @@ export const roleDataState = (state) => state.role.roles;
 export const positionIsLoadingState = (state) => state.position.isLoading;
 export const positionIsErrorState = (state) => state.position.isError;
 export const positionDataState = (state) => state.position.positions;
+//-------------------LANGUAGE----------------------
+export const getLanguageState = (state) => state.language.languages;
