@@ -6,6 +6,7 @@ import {
 } from "./components/navigation/Navigation";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import UsersManages from "./pages/QuanLiUsers";
 function App() {
   return (
     <Router>
@@ -15,6 +16,8 @@ function App() {
         </Route>
         <Route element={<PrivateUser />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/user-redux" element={<UsersManages />} />
+
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

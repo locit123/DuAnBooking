@@ -4,14 +4,14 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypeLoginFetch } from "../../store/FetchApiLogin/actions";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import {
   getDataLoginState,
   getIsErrorLoginState,
   getIsLoadingLoginState,
 } from "../../store/selector";
+import { useNavigate } from "react-router-dom";
 function Login(props) {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkEye, setCheckEye] = useState(false);
@@ -34,12 +34,7 @@ function Login(props) {
     if (isLoading === false && isError === false) {
       if (data.EC === 0) {
         toast.success(data.EM);
-        if (!data.DT) {
-          toast.error("ko có data");
-        } else {
-          localStorage.setItem("user", JSON.stringify(data.DT));
-          navigate("/home");
-        }
+        navigate("/home");
       } else {
         toast.error(data.EM);
       }

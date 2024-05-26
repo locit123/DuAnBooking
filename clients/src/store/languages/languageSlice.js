@@ -1,7 +1,7 @@
-import { LANGUAGE_EN_VN } from "./contants";
+import { LANGUAGE, LANGUAGE_EN_VN } from "./contants";
 
 export const initState = {
-  languages: "vn",
+  languages: LANGUAGE.VI,
 };
 
 const languageSlice = (state = initState, action) => {

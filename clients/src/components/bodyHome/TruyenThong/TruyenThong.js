@@ -18,7 +18,6 @@ const TruyenThong = (props) => {
               height="100%"
               src="https://www.youtube.com/embed/xtWIDRFunuA"
               title="Lộc Fuho - Nhà Bố Vợ Đã Xong"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen

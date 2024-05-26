@@ -1,26 +1,53 @@
-.header{
+.header {
     height: 50px;
     background-color: #0172bb;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    .content-box{
+
+    .content-box {
         display: flex;
         align-items: center;
         gap: 20px;
-        .p{
+
+        .p {
             color: white;
             margin: 0;
             padding: 0;
         }
-        .span{
+
+        .span {
             height: 50px;
             width: 2px;
             background-color: white;
         }
     }
-    .icon{
-        color: white;
+
+    .content-box-2 {
+        display: flex;
+        gap: 10px;
+
+        span {
+            color: white;
+        }
+
+        .icon {
+            color: white;
+        }
+
+        .clickLanguageVN {
+            color: gold;
+        }
+        .noneClick{
+            color: white;
+            opacity: 0.5;
+            &:hover{
+                opacity: 1;
+            }
+        }
+        .clickLanguageEN {
+            color: blueviolet;
+        }
     }
 }

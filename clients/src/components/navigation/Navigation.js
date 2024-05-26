@@ -1,16 +1,19 @@
+import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-
+import { getDataLoginState } from "../../store/selector";
 export const PrivateUser = () => {
-  const user = localStorage.getItem("user");
-  if (!user) {
+  const user = useSelector(getDataLoginState);
+
+  if (!user.DT) {
     return <Navigate to={"/"} />;
   }
   return <Outlet />;
 };
 
 export const PublicUser = () => {
-  const user = localStorage.getItem("user");
-  if (user) {
+  const user = useSelector(getDataLoginState);
+
+  if (user.DT) {
     return <Navigate to={"/home"} />;
   }
   return <Outlet />;

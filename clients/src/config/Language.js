@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next";
 import { HeaderHome } from "./HeaderHome";
 import { BannerHome } from "./BannerHome";
 import { BodyHome } from "./BodyHome";
+import { UserRedux } from "./UserRedux";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -12,6 +13,7 @@ i18n.use(initReactI18next).init({
         ...HeaderHome.en,
         ...BannerHome.en,
         ...BodyHome.en,
+        ...UserRedux.en,
       },
     },
     vn: {
@@ -19,6 +21,7 @@ i18n.use(initReactI18next).init({
         ...HeaderHome.vn,
         ...BannerHome.vn,
         ...BodyHome.vn,
+        ...UserRedux.vn,
       },
     },
     // Thêm các ngôn ngữ khác nếu cần

@@ -32,3 +32,5 @@ export const getLanguageState = (state) => state.language.languages;
 export const getDataLoginState = (state) => state.loginUser.login;
 export const getIsLoadingLoginState = (state) => state.loginUser.isLoading;
 export const getIsErrorLoginState = (state) => state.loginUser.isError;
+
+export const testState = (state) => console.log("[STATE]", state);

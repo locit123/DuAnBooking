@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../../store/languages/actions";
 import { useTranslation } from "react-i18next";
 import { getLanguageState } from "../../store/selector";
+import { LANGUAGE } from "../../store/languages/contants";
 const Header = (props) => {
   const [scroll, setScroll] = useState(false);
   const [scrollToTop, setScrollToTop] = useState(false);
@@ -19,6 +20,7 @@ const Header = (props) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector(getLanguageState);
+  console.log("[LANGUAGE/HOME]:", language);
 
   const handleClickLanguage = useCallback(
     (value) => {
@@ -26,6 +28,7 @@ const Header = (props) => {
     },
     [dispatch]
   );
+
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language, i18n]);
@@ -86,14 +89,14 @@ const Header = (props) => {
         </div>
         <div className="text-2">
           <span
-            className={language === "vn" ? "clickVn" : "noneClick"}
-            onClick={() => handleClickLanguage("vn")}
+            className={language === LANGUAGE.VI ? "clickVn" : "noneClick"}
+            onClick={() => handleClickLanguage(LANGUAGE.VI)}
           >
             VN
           </span>
           <span
-            className={language === "en" ? "clickEn" : "noneClick"}
-            onClick={() => handleClickLanguage("en")}
+            className={language === LANGUAGE.EN ? "clickEn" : "noneClick"}
+            onClick={() => handleClickLanguage(LANGUAGE.EN)}
           >
             EN
           </span>

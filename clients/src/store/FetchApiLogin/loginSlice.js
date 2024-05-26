@@ -1,17 +1,9 @@
 import { getType, getTypeLoginFetch } from "./actions";
 
-const getUserLocalStore = () => {
-  let user = localStorage.getItem("user");
-  if (!user) {
-    return null;
-  }
-  return JSON.parse(user);
-};
-
 export const initState = {
   isLoading: false,
   isError: false,
-  login: getUserLocalStore() ? getUserLocalStore() : {},
+  login: {},
 };
 
 const loginSlice = (state = initState, action) => {
