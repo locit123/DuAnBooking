@@ -1,4 +1,5 @@
 import { getType, getTypeLoginFetch } from "./actions";
+import { LOGOUT_USER } from "./contants";
 
 export const initState = {
   isLoading: false,
@@ -26,6 +27,13 @@ const loginSlice = (state = initState, action) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        isError: false,
+        isLoading: false,
+        login: action.payload,
       };
 
     default:

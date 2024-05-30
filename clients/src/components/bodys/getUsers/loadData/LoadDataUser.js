@@ -4,15 +4,24 @@ import { EditOutlined, DeleteFilled } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { showModal } from "../../../../store/modal/actions";
 import typeValue from "../../../../store/modal/valueModal/actions";
+import { Buffer } from "buffer";
 const LoadDataUser = ({ item }) => {
   const dispatch = useDispatch();
-  const handleClickEdit = useCallback(() => {
+
+  const handleClickEdit = useCallback(async () => {
     dispatch(showModal());
     dispatch(typeValue.setFirstName(item.firstName));
     dispatch(typeValue.setLastName(item.lastName));
     dispatch(typeValue.setAddress(item.address));
     dispatch(typeValue.setGender(item.gender));
     dispatch(typeValue.setRole(item.roleId));
+
+    let imageBase64 = "";
+
+    if (item.image) {
+      imageBase64 = Buffer.from(item.image, "base64").toString("binary");
+      dispatch(typeValue.setImage(imageBase64));
+    }
 
     dispatch(typeValue.setStatus(["update", item.id]));
   }, [dispatch, item]);

@@ -15,12 +15,13 @@ import { LANGUAGE } from "../../store/languages/contants";
 const Header = (props) => {
   const [scroll, setScroll] = useState(false);
   const [scrollToTop, setScrollToTop] = useState(false);
-
-  console.log("scroll", scroll);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector(getLanguageState);
-  console.log("[LANGUAGE/HOME]:", language);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
 
   const handleClickLanguage = useCallback(
     (value) => {
@@ -29,9 +30,6 @@ const Header = (props) => {
     [dispatch]
   );
 
-  useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language, i18n]);
   //xu li header
   useEffect(() => {
     const handleScroll = () => {

@@ -5,7 +5,10 @@ import ModalAdd from "./modal/ModalAdd";
 import { useDispatch } from "react-redux";
 import { showModal } from "../../../store/modal/actions";
 import typeValue from "../../../store/modal/valueModal/actions";
+import { useTranslation } from "react-i18next";
+
 const AddNewUser = (props) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const handleClickModal = useCallback(() => {
     dispatch(showModal());
@@ -25,7 +28,7 @@ const AddNewUser = (props) => {
     <div>
       <ModalAdd />
       <Button variant="primary" onClick={handleClickModal}>
-        <PlusOutlined /> Add New User
+        <PlusOutlined /> {t("AddNewUser")}
       </Button>
     </div>
   );

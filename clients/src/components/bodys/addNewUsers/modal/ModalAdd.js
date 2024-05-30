@@ -1,7 +1,10 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useSelector, useDispatch } from "react-redux";
+import "./ModalAdd.scss";
+import { SlideshowLightbox } from "lightbox.js-react";
+import "lightbox.js-react/dist/index.css";
 import {
   addressState,
   emailState,
@@ -39,8 +42,11 @@ import {
 import LoadingGender from "./Loading/LoadingGender";
 import LoadingRole from "./Loading/LoadingRole";
 import LoadingPosition from "./Loading/LoadingPosition";
-
+import ConvertToBase from "../../../../utils/ConvertToBase64";
+import { useTranslation } from "react-i18next";
 function ModalAdd(props) {
+  const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const modal = useSelector(modalState);
   const email = useSelector(emailState);
@@ -72,15 +78,12 @@ function ModalAdd(props) {
   }, [dispatch]);
 
   const handleImage = useCallback(
-    (e) => {
+    async (e) => {
       let img = e.target.files[0];
-
-      let url = URL.createObjectURL(img);
-      dispatch(typeValue.setImage(url));
-
-      return () => {
-        URL.revokeObjectURL(url);
-      };
+      if (img) {
+        let base64 = await ConvertToBase.getBase64(img);
+        dispatch(typeValue.setImage(base64));
+      }
     },
     [dispatch]
   );
@@ -123,6 +126,7 @@ function ModalAdd(props) {
         gender,
         roleId,
         positionId,
+        image,
       };
       dispatch(putTypeFetch.putRequest(id, payload));
       dispatch(getTypeFetch.getRequest("all"));
@@ -153,14 +157,20 @@ function ModalAdd(props) {
     dispatch(getTypeFetchAllCode2.getRoleRequest("ROLE"));
     dispatch(getTypeFetchAllCode3.getPositionRequest("POSITION"));
   }, [dispatch]);
+
+  const handleClickImg = () => {
+    setIsOpen(true);
+  };
   return (
     <>
       <Modal show={modal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             {status[0] === "create" || status === "create"
-              ? "Create New User"
-              : "Update User"}
+              ? t("CreateNewUser")
+              : status[0] === "delete"
+              ? t("DeleteUser")
+              : t("UpdateUser")}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -169,7 +179,7 @@ function ModalAdd(props) {
           ) : (
             <div className="form">
               <div
-                className="form-group"
+                className="form-group "
                 hidden={
                   status[0] === "create" || status === "create" ? false : true
                 }
@@ -184,12 +194,12 @@ function ModalAdd(props) {
                 />
               </div>
               <div
-                className="form-group"
+                className="form-group mt-3"
                 hidden={
                   status[0] === "create" || status === "create" ? false : true
                 }
               >
-                <label>Password</label>
+                <label>{t("Password")}</label>
                 <input
                   value={password}
                   type="password"
@@ -200,8 +210,8 @@ function ModalAdd(props) {
                   }
                 />
               </div>
-              <div className="form-group">
-                <label>firstName</label>
+              <div className="form-group mt-3">
+                <label>{t("FirstName")}</label>
                 <input
                   value={firstName}
                   type="text"
@@ -212,8 +222,8 @@ function ModalAdd(props) {
                   }
                 />
               </div>
-              <div className="form-group">
-                <label>lastName</label>
+              <div className="form-group mt-3">
+                <label>{t("LastName")}</label>
                 <input
                   value={lastName}
                   type="text"
@@ -224,8 +234,8 @@ function ModalAdd(props) {
                   }
                 />
               </div>
-              <div className="form-group">
-                <label>address</label>
+              <div className="form-group mt-3">
+                <label>{t("Address")}</label>
                 <input
                   value={address}
                   type="text"
@@ -236,10 +246,10 @@ function ModalAdd(props) {
                   }
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <div className="row">
                   <div className="col-4">
-                    <label>gender</label>
+                    <label>{t("Gender")}</label>
                     <select
                       className="form-control"
                       value={gender}
@@ -259,7 +269,7 @@ function ModalAdd(props) {
                     </select>
                   </div>
                   <div className="col-4">
-                    <label>Role</label>
+                    <label>{t("Role")}</label>
                     <select
                       className="form-control"
                       value={roleId}
@@ -271,7 +281,7 @@ function ModalAdd(props) {
                       isErrorRole === false &&
                       dataRole.length > 0 ? (
                         dataRole.map((item) => (
-                          <LoadingRole key={item.key} item={item} />
+                          <LoadingRole Role key={item.key} item={item} />
                         ))
                       ) : (
                         <div>Loading...</div>
@@ -279,7 +289,7 @@ function ModalAdd(props) {
                     </select>
                   </div>
                   <div className="col-4">
-                    <label>Position</label>
+                    <label>{t("Position")}</label>
                     <select
                       className="form-control"
                       value={positionId}
@@ -301,12 +311,12 @@ function ModalAdd(props) {
                 </div>
               </div>
               <div
-                className="form-group"
+                className="form-group mt-3"
                 hidden={
                   status[0] === "create" || status === "create" ? false : true
                 }
               >
-                <label>PhoneNumber</label>
+                <label>{t("PhoneNumber")}</label>
                 <input
                   value={phoneNumber}
                   type="number"
@@ -317,35 +327,51 @@ function ModalAdd(props) {
                   }
                 />
               </div>
-              <div
-                className="form-group"
-                hidden={
-                  status[0] === "create" || status === "create" ? false : true
-                }
-              >
-                <label>Image</label>
-                <input
-                  type="file"
-                  className="form-control"
-                  onChange={handleImage}
-                />
+              <div className="row mt-3">
+                <div className="col-8">
+                  <div className="form-group">
+                    <label>{t("Image")}</label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      onChange={handleImage}
+                    />
+                  </div>
+                </div>
+                <div className="col-4">
+                  <span className="load-img" onClick={handleClickImg}>
+                    <img alt="hinh anh" src={image} />
+                  </span>
+                </div>
+                {image && (
+                  <SlideshowLightbox
+                    theme="lightbox"
+                    images={[{ src: image }]}
+                    showThumbnails={true}
+                    open={isOpen}
+                    lightboxIdentifier="lbox1"
+                    onClose={() => {
+                      setIsOpen(false);
+                    }}
+                  ></SlideshowLightbox>
+                )}
               </div>
             </div>
           )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("Close")}
           </Button>
           <Button
             variant={status[0] === "delete" ? "danger" : "primary"}
             onClick={handleCreate}
           >
             {status[0] === "create" || status === "create"
-              ? "Create"
+              ? t("Create")
               : status[0] === "delete"
-              ? "Delete"
-              : "Update"}
+              ? t("Delete")
+              : t("Update")}
           </Button>
         </Modal.Footer>
       </Modal>

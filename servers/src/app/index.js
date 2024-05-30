@@ -15,8 +15,8 @@ app.use(cors());
 app.use(methodOverride("_method"));
 
 //connect bodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
+app.use(bodyParser.json({ limit: "30mb" }));
 //connect Handlebars
 connectHandleBars(app);
 //connect appRouter

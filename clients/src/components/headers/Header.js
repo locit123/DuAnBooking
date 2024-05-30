@@ -6,13 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataLoginState, getLanguageState } from "../../store/selector";
 import { setLanguage } from "../../store/languages/actions";
 import { LANGUAGE } from "../../store/languages/contants";
+import { setLogOut } from "../../store/FetchApiLogin/actions";
 function HeaderComponent(props) {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector(getLanguageState);
-  console.log("[LANGUAGE/Redux]:", language);
   const user = useSelector(getDataLoginState);
-  console.log("[USER]", user);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
+
   const handleClickLanguage = useCallback(
     (value) => {
       dispatch(setLanguage(value));
@@ -20,10 +24,10 @@ function HeaderComponent(props) {
     [dispatch]
   );
 
-  console.log();
-  useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [i18n, language]);
+  const handleClickLogout = useCallback(() => {
+    let data = {};
+    dispatch(setLogOut(data));
+  }, [dispatch]);
   return (
     <header className="header">
       <div className="content-box">
@@ -52,7 +56,11 @@ function HeaderComponent(props) {
         >
           EN
         </span>
-        <LoginOutlined className="icon" />
+        <LoginOutlined
+          className="icon"
+          title="logout"
+          onClick={handleClickLogout}
+        />
       </div>
     </header>
   );

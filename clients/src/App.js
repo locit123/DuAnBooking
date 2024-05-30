@@ -17,7 +17,6 @@ function App() {
         <Route element={<PrivateUser />}>
           <Route path="/home" element={<Home />} />
           <Route path="/user-redux" element={<UsersManages />} />
-
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

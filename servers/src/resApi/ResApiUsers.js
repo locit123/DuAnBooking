@@ -282,6 +282,7 @@ const putUserService = async (idUser, data) => {
           address: data.address,
           gender: data.gender,
           roleId: data.roleId,
+          image: data.image,
         },
         { where: { id: idUser } }
       );

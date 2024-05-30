@@ -16,9 +16,9 @@ import { store, persistor } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <I18nextProvider i18n={i18n}>
-        <React.StrictMode>
+    <React.StrictMode>
+      <PersistGate loading={null} persistor={persistor}>
+        <I18nextProvider i18n={i18n}>
           <App />
           <ToastContainer
             position="top-right"
@@ -34,9 +34,9 @@ root.render(
             transition="Bounce"
           />
           <ToastContainer />
-        </React.StrictMode>
-      </I18nextProvider>
-    </PersistGate>
+        </I18nextProvider>
+      </PersistGate>
+    </React.StrictMode>
   </Provider>
 );
 

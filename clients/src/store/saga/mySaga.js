@@ -11,7 +11,10 @@ import {
 import * as Api from "../../apis/FetchApiUser";
 import * as ApiAllCode from "../../apis/FetchApiAllCode";
 import * as ApiLogin from "../../apis/FetchApiLoginUser";
+import * as ApiDoctor from "../../apis/FetchApiDoctor";
+
 import { getTypeLoginFetch } from "../FetchApiLogin/actions";
+import { getTypeActionDoctor } from "../fetchApiDoctor/actions";
 //------------FETCH-API-USERS-----------
 function* fetchAllUser(action) {
   try {
@@ -30,7 +33,6 @@ function* fetchPostUser(action) {
   try {
     let res = yield call(Api.postUser, action.payload);
     let data = res.data;
-    console.log(data);
     if (data && data.EC === 0) {
       yield put(postTypeFetch.postSuccess(data.DT));
     } else {
@@ -108,6 +110,16 @@ function* fetchLoginUser(action) {
   }
 }
 
+function* fetchDoctor(action) {
+  try {
+    let res = yield call(ApiDoctor.getDoctor, action.payload);
+    let data = res.data;
+    yield put(getTypeActionDoctor.getDoctorSuccess(data));
+  } catch (error) {
+    yield put(getTypeActionDoctor.getDoctorFailed(error));
+  }
+}
+
 function* mySaga() {
   yield takeLatest(getTypeFetch.getRequest, fetchAllUser);
   yield takeLatest(postTypeFetch.postRequest, fetchPostUser);
@@ -120,6 +132,7 @@ function* mySaga() {
     fetchPositionAllCode
   );
   yield takeLatest(getTypeLoginFetch.postLoginRequest, fetchLoginUser);
+  yield takeLatest(getTypeActionDoctor.getDoctorRequest, fetchDoctor);
 }
 
 export default mySaga;

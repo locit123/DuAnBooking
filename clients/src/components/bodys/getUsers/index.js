@@ -10,7 +10,9 @@ import {
   userDataState,
 } from "../../../store/selector";
 import LoadDataUser from "./loadData/LoadDataUser";
+import { useTranslation } from "react-i18next";
 function TableUsers(props) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const data = useSelector(userDataState);
   const isLoading = useSelector(isLoadingState);
@@ -24,10 +26,10 @@ function TableUsers(props) {
       <thead>
         <tr>
           <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Address</th>
-          <th>Option</th>
+          <th>{t("FirstName")}</th>
+          <th>{t("LastName")}</th>
+          <th>{t("Address")}</th>
+          <th>{t("Option")}</th>
         </tr>
       </thead>
       <tbody>
