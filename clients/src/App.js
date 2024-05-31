@@ -7,7 +7,12 @@ import {
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import UsersManages from "./pages/QuanLiUsers";
+import { useSelector } from "react-redux";
+import { getLanguageState } from "./store/selector";
 function App() {
+  const language = useSelector(getLanguageState);
+  console.log("[LANGUAGES-APP]", language);
+
   return (
     <Router>
       <Routes>

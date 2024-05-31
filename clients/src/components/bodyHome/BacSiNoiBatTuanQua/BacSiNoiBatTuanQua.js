@@ -16,6 +16,9 @@ const BacSiNoiBatTuanQua = (props) => {
   const dataDoctor = useSelector(getDoctorState);
   const isLoading = useSelector(isLoadingDoctorState);
   const isError = useSelector(isErrorDoctorState);
+  // let fakeData = dataDoctor.DT.concat(dataDoctor.DT)
+  //   .concat(dataDoctor.DT)
+  //   .concat(dataDoctor.DT);
 
   useEffect(() => {
     dispatch(getTypeActionDoctor.getDoctorRequest(""));
@@ -25,8 +28,8 @@ const BacSiNoiBatTuanQua = (props) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     initialSlide: 0,
     responsive: [
       {

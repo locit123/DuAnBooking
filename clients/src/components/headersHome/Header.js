@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FloatButton } from "antd";
 import { CaretUpOutlined } from "@ant-design/icons";
 import "./Header.scss";
@@ -18,17 +18,18 @@ const Header = (props) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector(getLanguageState);
+  console.log("language: ", language);
 
   useEffect(() => {
     i18n.changeLanguage(language);
+    return () => {
+      i18n.changeLanguage(language);
+    };
   }, [language, i18n]);
 
-  const handleClickLanguage = useCallback(
-    (value) => {
-      dispatch(setLanguage(value));
-    },
-    [dispatch]
-  );
+  const handleClickLanguage = (value) => {
+    dispatch(setLanguage(value));
+  };
 
   //xu li header
   useEffect(() => {
@@ -52,9 +53,9 @@ const Header = (props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const handleClickToTop = useCallback(() => {
+  const handleClickToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  };
   return (
     <div className={scroll ? "content-header2" : "content-header"}>
       <div className="box-1">

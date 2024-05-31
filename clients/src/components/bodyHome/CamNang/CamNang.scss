@@ -180,6 +180,9 @@
     
                 }
             }
+                        .slick-disabled {
+                            display: none !important;
+                        }
     
             .slick-next {
                 position: absolute;

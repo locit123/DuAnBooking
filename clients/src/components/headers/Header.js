@@ -1,5 +1,5 @@
 import "./Header.scss";
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { LoginOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,23 +11,25 @@ function HeaderComponent(props) {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector(getLanguageState);
+  console.log("LANGUAGE", language);
   const user = useSelector(getDataLoginState);
 
   useEffect(() => {
     i18n.changeLanguage(language);
+
+    return () => {
+      i18n.changeLanguage(language);
+    };
   }, [language, i18n]);
 
-  const handleClickLanguage = useCallback(
-    (value) => {
-      dispatch(setLanguage(value));
-    },
-    [dispatch]
-  );
+  const handleClickLanguage = (value) => {
+    dispatch(setLanguage(value));
+  };
 
-  const handleClickLogout = useCallback(() => {
+  const handleClickLogout = () => {
     let data = {};
     dispatch(setLogOut(data));
-  }, [dispatch]);
+  };
   return (
     <header className="header">
       <div className="content-box">

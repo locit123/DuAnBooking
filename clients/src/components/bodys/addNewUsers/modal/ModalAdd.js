@@ -73,22 +73,18 @@ function ModalAdd(props) {
   const isErrorPosition = useSelector(positionIsErrorState);
   const dataPosition = useSelector(positionDataState);
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     dispatch(hideModal());
-  }, [dispatch]);
+  };
 
-  const handleImage = useCallback(
-    async (e) => {
-      let img = e.target.files[0];
-      if (img) {
-        let base64 = await ConvertToBase.getBase64(img);
-        dispatch(typeValue.setImage(base64));
-      }
-    },
-    [dispatch]
-  );
-
-  const handleCreate = useCallback(() => {
+  const handleImage = async (e) => {
+    let img = e.target.files[0];
+    if (img) {
+      let base64 = await ConvertToBase.getBase64(img);
+      dispatch(typeValue.setImage(base64));
+    }
+  };
+  const handleCreate = () => {
     if (status[0] === "create" || status === "create") {
       const payload = {
         email,
@@ -137,26 +133,18 @@ function ModalAdd(props) {
       dispatch(getTypeFetch.getRequest("all"));
       dispatch(hideModal());
     }
-  }, [
-    dispatch,
-    email,
-    password,
-    firstName,
-    lastName,
-    address,
-    gender,
-    roleId,
-    phoneNumber,
-    image,
-    status,
-    positionId,
-  ]);
+  };
   //-------------GET-API-ALLCODE---------------
-  useEffect(() => {
+
+  const getApiAllCode = useCallback(() => {
     dispatch(getTypeFetchAllCode1.getAllCodeRequest("GENDER"));
     dispatch(getTypeFetchAllCode2.getRoleRequest("ROLE"));
     dispatch(getTypeFetchAllCode3.getPositionRequest("POSITION"));
   }, [dispatch]);
+
+  useEffect(() => {
+    getApiAllCode();
+  }, [getApiAllCode]);
 
   const handleClickImg = () => {
     setIsOpen(true);

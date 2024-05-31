@@ -4,8 +4,6 @@ export const initState = {
 };
 
 const languageSlice = (state = initState, action) => {
-  console.log("sate", state);
-  console.log("action", action);
   let newState;
   switch (action.type) {
     case LANGUAGE_EN_VN:
@@ -17,7 +15,6 @@ const languageSlice = (state = initState, action) => {
     default:
       return state;
   }
-  console.log("newState", newState);
   return newState;
 };
 

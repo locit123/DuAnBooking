@@ -5,8 +5,6 @@ export const initState = {
 };
 
 const modalSlice = (state = initState, action) => {
-  console.log("state", state);
-  console.log("action", action);
   let newState;
   switch (action.type) {
     case SHOW_MODAL:
@@ -25,7 +23,6 @@ const modalSlice = (state = initState, action) => {
     default:
       return state;
   }
-  console.log("newState", newState);
   return newState;
 };
 

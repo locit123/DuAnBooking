@@ -13,8 +13,6 @@ export const initState = {
 };
 
 const userSlice = (state = initState, action) => {
-  console.log("state", state);
-  console.log("action", action);
   let newState;
   switch (action.type) {
     case getType(getTypeFetch.getRequest):
@@ -107,7 +105,6 @@ const userSlice = (state = initState, action) => {
     default:
       return state;
   }
-  console.log("newState", newState);
   return newState;
 };
 

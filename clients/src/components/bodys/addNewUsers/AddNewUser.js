@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import { PlusOutlined } from "@ant-design/icons";
 import ModalAdd from "./modal/ModalAdd";
@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 const AddNewUser = (props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const handleClickModal = useCallback(() => {
+  const handleClickModal = () => {
     dispatch(showModal());
     dispatch(typeValue.setStatus("create"));
     dispatch(typeValue.setEmail(""));
@@ -23,7 +23,7 @@ const AddNewUser = (props) => {
     dispatch(typeValue.setPhoneNumber(""));
     dispatch(typeValue.setPosition("P0"));
     dispatch(typeValue.setImage(""));
-  }, [dispatch]);
+  };
   return (
     <div>
       <ModalAdd />

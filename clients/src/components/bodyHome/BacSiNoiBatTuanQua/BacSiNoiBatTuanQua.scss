@@ -91,6 +91,9 @@
                 border-radius: 0 !important;
             }
         }
+        .slick-disabled{
+            display: none!important;
+        }
 
         .slick-prev {
             left: calc(100px - 125px);
